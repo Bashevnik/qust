@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop — QUST</title>
-  <meta name="description" content="Каталог одежды QUST. Минимализм, качество, без лого.">
+  <title>вещи — QUST</title>
+  <meta name="description" content="qust — вещи SS25. форма без лишнего. под заказ.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -26,9 +26,9 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" aria-hidden="true">
     <nav class="mobile-menu__links">
-      <a href="index.html"   class="mobile-menu__link"><span>Home</span></a>
-      <a href="catalog.html" class="mobile-menu__link"><span>Shop</span></a>
-      <a href="about.html"   class="mobile-menu__link"><span>About</span></a>
+      <a href="index.html"   class="mobile-menu__link"><span>главная</span></a>
+      <a href="catalog.html" class="mobile-menu__link"><span>вещи</span></a>
+      <a href="about.html"   class="mobile-menu__link"><span>о проекте</span></a>
     </nav>
     <div class="mobile-menu__footer">
       <div class="mobile-menu__socials">
@@ -43,9 +43,9 @@
   <header class="nav">
     <a href="index.html" class="nav__logo">qust</a>
     <nav class="nav__links">
-      <a href="index.html"   class="nav__link">Home</a>
-      <a href="catalog.html" class="nav__link active">Shop</a>
-      <a href="about.html"   class="nav__link">About</a>
+      <a href="index.html"   class="nav__link">главная</a>
+      <a href="catalog.html" class="nav__link active">вещи</a>
+      <a href="about.html"   class="nav__link">о проекте</a>
     </nav>
     <button class="nav__menu-btn" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -56,9 +56,9 @@
 
     <!-- CATALOG HERO -->
     <section class="catalog-hero container">
-      <p class="label label--accent catalog-hero__label">SS25 Collection</p>
+      <p class="label catalog-hero__label">SS25 / вещи</p>
       <div class="catalog-hero__top">
-        <h1 class="catalog-hero__title">Shop</h1>
+        <h1 class="catalog-hero__title">вещи</h1>
         <span class="catalog-hero__count products-count">8 товаров</span>
       </div>
     </section>
@@ -72,21 +72,21 @@
 
         <!-- Category -->
         <div class="filter-group">
-          <div class="filter-group__label">Категория</div>
+          <div class="filter-group__label">категория</div>
           <div class="filter-options">
             <label class="filter-option">
               <input type="checkbox" class="filter-category" value="hoodie">
-              <span class="filter-option__text">Худи и куртки</span>
+              <span class="filter-option__text">худи и куртки</span>
               <span class="filter-option__count">4</span>
             </label>
             <label class="filter-option">
               <input type="checkbox" class="filter-category" value="pants">
-              <span class="filter-option__text">Брюки и шорты</span>
+              <span class="filter-option__text">брюки и шорты</span>
               <span class="filter-option__count">2</span>
             </label>
             <label class="filter-option">
               <input type="checkbox" class="filter-category" value="accessories">
-              <span class="filter-option__text">Аксессуары</span>
+              <span class="filter-option__text">аксессуары</span>
               <span class="filter-option__count">2</span>
             </label>
           </div>
@@ -94,7 +94,7 @@
 
         <!-- Price -->
         <div class="filter-group">
-          <div class="filter-group__label">Цена до</div>
+          <div class="filter-group__label">цена до</div>
           <div class="price-range">
             <input type="range" id="priceRange" min="1000" max="20000" value="20000" step="500">
             <div class="price-range__labels">
@@ -106,7 +106,7 @@
 
         <!-- Color -->
         <div class="filter-group">
-          <div class="filter-group__label">Цвет</div>
+          <div class="filter-group__label">цвет</div>
           <div class="color-filters">
             <button class="color-dot color-dot--black" data-color="black" title="Чёрный"></button>
             <button class="color-dot color-dot--white" data-color="white" title="Белый"></button>
@@ -114,7 +114,7 @@
           </div>
         </div>
 
-        <button class="filters__reset">Сбросить фильтры</button>
+        <button class="filters__reset">сбросить</button>
       </aside>
 
       <!-- PRODUCTS -->
@@ -123,9 +123,9 @@
         <div class="products-header">
           <span class="products-count" style="display:none">8 товаров</span>
           <div class="products-sort">
-            <span class="products-sort__opt active">Новинки</span>
-            <span class="products-sort__opt">Цена ↑</span>
-            <span class="products-sort__opt">Цена ↓</span>
+            <span class="products-sort__opt active">новое</span>
+            <span class="products-sort__opt">цена ↑</span>
+            <span class="products-sort__opt">цена ↓</span>
           </div>
         </div>
 
@@ -138,7 +138,7 @@
             data-price="9900"
             data-color="black">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#101010 0%,#1e1e1e 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#D8D8D8"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -152,7 +152,7 @@
                 <span class="product-card__delivery">7–12 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -164,7 +164,7 @@
             data-price="8500"
             data-color="black">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#181818 0%,#2c2c2c 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#CACACA"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -178,7 +178,7 @@
                 <span class="product-card__delivery">5–10 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -190,7 +190,7 @@
             data-price="14900"
             data-color="black">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#0a0a0a 0%,#181818 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#C0C0C0"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -204,7 +204,7 @@
                 <span class="product-card__delivery">10–14 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -216,7 +216,7 @@
             data-price="4900"
             data-color="white">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#d8d8d8 0%,#f0f0f0 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#EBEBEB"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -230,7 +230,7 @@
                 <span class="product-card__delivery">3–5 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -242,7 +242,7 @@
             data-price="9900"
             data-color="grey">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#555 0%,#777 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#B8B8B8"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -255,7 +255,7 @@
                 <span class="product-card__delivery">7–12 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -267,7 +267,7 @@
             data-price="7500"
             data-color="black">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#1a1a1a 0%,#2d2d2d 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#D0D0D0"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -280,7 +280,7 @@
                 <span class="product-card__delivery">5–10 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -292,7 +292,7 @@
             data-price="3500"
             data-color="black">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#0d0d0d 0%,#1c1c1c 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#C8C8C8"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -305,7 +305,7 @@
                 <span class="product-card__delivery">3–5 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -317,7 +317,7 @@
             data-price="1900"
             data-color="white">
             <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:linear-gradient(145deg,#e0e0e0 0%,#f5f5f5 100%)"><!-- img --></div>
+              <div class="product-card__placeholder" style="background:#E8E8E8"><!-- img --></div>
               <div class="product-card__overlay"><div class="product-card__view">View</div></div>
             </div>
             <div class="product-card__info">
@@ -331,7 +331,7 @@
                 <span class="product-card__delivery">3–5 дней</span>
               </div>
               <div class="product-card__actions">
-                <button class="product-card__btn"><span>Добавить в корзину</span></button>
+                <button class="product-card__btn"><span>заказать</span></button>
               </div>
             </div>
           </article>
@@ -352,28 +352,28 @@
       <div class="footer__inner">
         <div class="footer__brand">
           <div class="footer__logo">qust</div>
-          <p class="footer__tagline">Одежда без ответа.<br>Минимализм как позиция.</p>
+          <p class="footer__tagline">форма без лишнего.</p>
         </div>
         <nav class="footer__nav">
-          <div class="footer__nav-title">Навигация</div>
+          <div class="footer__nav-title">навигация</div>
           <div class="footer__nav-links">
-            <a href="index.html"   class="footer__nav-link">Home</a>
-            <a href="catalog.html" class="footer__nav-link">Shop</a>
-            <a href="about.html"   class="footer__nav-link">About</a>
+            <a href="index.html"   class="footer__nav-link">главная</a>
+            <a href="catalog.html" class="footer__nav-link">вещи</a>
+            <a href="about.html"   class="footer__nav-link">о проекте</a>
           </div>
         </nav>
         <div>
-          <div class="footer__nav-title">Контакты</div>
+          <div class="footer__nav-title">контакты</div>
           <div class="footer__socials">
-            <a href="#" class="footer__social">Telegram →</a>
-            <a href="#" class="footer__social">VK →</a>
-            <a href="#" class="footer__social">Instagram →</a>
+            <a href="#" class="footer__social">telegram →</a>
+            <a href="#" class="footer__social">vk →</a>
+            <a href="#" class="footer__social">instagram →</a>
           </div>
         </div>
       </div>
       <div class="footer__bottom">
-        <span class="footer__copy">© 2024 QUST. All rights reserved.</span>
-        <span class="footer__copy">Anti-fashion. Undefined.</span>
+        <span class="footer__copy">© 2025 qust.</span>
+        <span class="footer__copy">форма без лишнего.</span>
       </div>
     </div>
   </footer>
