@@ -1,7 +1,5 @@
 /* ═══════════════════════════════════════════════
-   QUST — Main JS
-   Анимации срабатывают один раз при загрузке.
-   Скролл — без перезапуска, без рывков.
+   QUST — Main JS (Underground)
    ═══════════════════════════════════════════════ */
 
 gsap.registerPlugin(ScrollTrigger);
@@ -33,7 +31,7 @@ function splitWords(el) {
     wrap.style.cssText = 'overflow:hidden;display:inline-block;vertical-align:bottom';
     const span = document.createElement('span');
     span.className = 'word';
-    span.textContent = word + (i < arr.length - 1 ? ' ' : '');
+    span.textContent = word + (i < arr.length - 1 ? ' ' : '');
     span.style.display = 'inline-block';
     wrap.appendChild(span);
     el.appendChild(wrap);
@@ -52,13 +50,12 @@ function initPreloader() {
   const lineEl    = qs('.preloader__line', preloader);
   const counterEl = qs('.preloader__counter', preloader);
 
-  /* Скрываем контент за прелоадером */
   gsap.set('main, footer', { opacity: 0 });
 
   let chars = [];
   if (logoEl) {
     chars = splitChars(logoEl);
-    gsap.set(chars, { yPercent: 115 });
+    gsap.set(chars, { yPercent: 110 });
   }
 
   const counter = { val: 0 };
@@ -74,27 +71,26 @@ function initPreloader() {
   if (chars.length) {
     tl.to(chars, {
       yPercent: 0,
-      duration: 1.1,
-      stagger: 0.06,
-      ease: 'power2.out'
+      duration: 0.8,
+      stagger: 0.04,
+      ease: 'power3.out'
     }, 0);
   }
 
   if (lineEl) {
-    tl.to(lineEl, { width: '78%', duration: 2.2, ease: 'power2.inOut' }, 0);
+    tl.to(lineEl, { width: '78%', duration: 1.8, ease: 'power2.inOut' }, 0);
   }
 
   if (counterEl) {
     tl.to(counter, {
-      val: 100, duration: 2.2, ease: 'power2.inOut',
+      val: 100, duration: 1.8, ease: 'power2.inOut',
       onUpdate() {
         counterEl.textContent = String(Math.round(counter.val)).padStart(3, '0') + '%';
       }
     }, 0);
   }
 
-  /* Прелоадер уезжает вверх */
-  tl.to(preloader, { yPercent: -100, duration: 1.0, ease: 'power3.inOut', delay: 0.1 });
+  tl.to(preloader, { yPercent: -100, duration: 0.8, ease: 'power3.inOut', delay: 0.05 });
 }
 
 /* ══════════════════════════════════
@@ -116,8 +112,8 @@ function initCursor() {
   });
 
   (function loop() {
-    rx += (mx - rx) * 0.1;
-    ry += (my - ry) * 0.1;
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
     ring.style.left = rx + 'px';
     ring.style.top  = ry + 'px';
     requestAnimationFrame(loop);
@@ -146,7 +142,6 @@ function initNav() {
     onLeaveBack: () => nav.classList.remove('scrolled')
   });
 
-  /* Активная ссылка */
   const page = window.location.pathname.split('/').pop() || 'index.html';
   qsa('.nav__link', nav).forEach(link => {
     const href = link.getAttribute('href') || '';
@@ -154,7 +149,6 @@ function initNav() {
       link.classList.add('active');
   });
 
-  /* Мобильное меню */
   const menuBtn    = qs('.nav__menu-btn');
   const mobileMenu = qs('.mobile-menu');
   if (!menuBtn || !mobileMenu) return;
@@ -168,18 +162,18 @@ function initNav() {
     document.body.style.overflow = open ? 'hidden' : '';
 
     if (open) {
-      gsap.to(spans[0], { rotation: 45,  y: 6,  duration: 0.4, ease: 'power2.out' });
-      gsap.to(spans[1], { opacity: 0,           duration: 0.2 });
-      gsap.to(spans[2], { rotation: -45, y: -6, duration: 0.4, ease: 'power2.out' });
+      gsap.to(spans[0], { rotation: 45,  y: 6,  duration: 0.35, ease: 'power2.out' });
+      gsap.to(spans[1], { opacity: 0,           duration: 0.15 });
+      gsap.to(spans[2], { rotation: -45, y: -6, duration: 0.35, ease: 'power2.out' });
       gsap.fromTo(
         qsa('.mobile-menu__link span', mobileMenu),
         { yPercent: 100 },
-        { yPercent: 0, duration: 0.65, stagger: 0.07, ease: 'power3.out', delay: 0.05 }
+        { yPercent: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out', delay: 0.04 }
       );
     } else {
-      gsap.to(spans[0], { rotation: 0, y: 0, duration: 0.4, ease: 'power2.out' });
-      gsap.to(spans[1], { opacity: 1,         duration: 0.4 });
-      gsap.to(spans[2], { rotation: 0, y: 0, duration: 0.4, ease: 'power2.out' });
+      gsap.to(spans[0], { rotation: 0, y: 0, duration: 0.35, ease: 'power2.out' });
+      gsap.to(spans[1], { opacity: 1,         duration: 0.35 });
+      gsap.to(spans[2], { rotation: 0, y: 0, duration: 0.35, ease: 'power2.out' });
     }
   });
 
@@ -196,15 +190,13 @@ function initNav() {
    DISPATCHER
    ══════════════════════════════════ */
 function initPageAnimations() {
-  /* Плавно показываем весь контент */
-  gsap.to('main, footer', { opacity: 1, duration: 1.1, ease: 'power2.out' });
+  gsap.to('main, footer', { opacity: 1, duration: 0.8, ease: 'power2.out' });
 
   const page = document.body.dataset.page;
   if (page === 'home')    initHomeAnimations();
   if (page === 'catalog') initCatalogPage();
   if (page === 'about')   initAboutAnimations();
 
-  /* Счётчик статистики (about) — только once */
   initStatsCounter();
 }
 
@@ -212,30 +204,42 @@ function initPageAnimations() {
    HOME
    ══════════════════════════════════ */
 function initHomeAnimations() {
-  /* Только fade-in элементов hero, без движения */
-  const tl = gsap.timeline({ delay: 0.1 });
+  const tl = gsap.timeline({ delay: 0.05 });
 
-  tl.fromTo('.hero__label',    { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' })
-    .fromTo('.hero__subtitle', { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.6')
-    .fromTo('.hero__cta',      { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.6')
-    .fromTo('.hero__meta',     { opacity: 0 }, { opacity: 1, duration: 1.2, ease: 'power2.out' }, '-=0.4');
+  tl.fromTo('.hero__label',
+      { opacity: 0, x: -12 },
+      { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' })
+    .fromTo('.hero__subtitle',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2')
+    .fromTo('.hero__cta',
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.2')
+    .fromTo('.hero__meta',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.15');
+
+  /* Hero title: flash-in with scale */
+  gsap.fromTo('.hero__title',
+    { opacity: 0, scale: 0.96 },
+    { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out', delay: 0.08 }
+  );
 }
 
 /* ══════════════════════════════════
    CATALOG
    ══════════════════════════════════ */
 function initCatalogPage() {
-  /* Заголовок каталога — char reveal */
   const heroTitle = qs('.catalog-hero__title');
   if (heroTitle) {
-    const chars = splitChars(heroTitle);
-    gsap.fromTo(chars,
-      { yPercent: 110 },
-      { yPercent: 0, duration: 1.1, stagger: 0.035, ease: 'power3.out', delay: 0.15 }
+    const words = splitWords(heroTitle);
+    gsap.fromTo(words,
+      { yPercent: 105 },
+      { yPercent: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out', delay: 0.1 }
     );
   }
-  gsap.fromTo('.catalog-hero__label', { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power2.out', delay: 0.7 });
-  gsap.fromTo('.filters',             { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power2.out', delay: 0.4 });
+  gsap.fromTo('.catalog-hero__label', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.5 });
+  gsap.fromTo('.filters',             { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out', delay: 0.25 });
 
   initFilters();
 }
@@ -271,8 +275,8 @@ function initFilters() {
     if (noResults) noResults.classList.toggle('visible', visible === 0);
 
     gsap.fromTo(qsa('.product-card:not(.hidden)'),
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6, stagger: 0.04, ease: 'power2.out', overwrite: true }
+      { opacity: 0, y: 8 },
+      { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out', overwrite: true }
     );
   }
 
@@ -317,28 +321,26 @@ function initFilters() {
    ABOUT
    ══════════════════════════════════ */
 function initAboutAnimations() {
-  /* Hero title — word reveal */
   const heroTitle = qs('.about-hero__title');
   if (heroTitle) {
     const words = splitWords(heroTitle);
     gsap.fromTo(words,
       { yPercent: 110 },
-      { yPercent: 0, duration: 1.2, stagger: 0.09, ease: 'power3.out', delay: 0.15 }
+      { yPercent: 0, duration: 0.8, stagger: 0.07, ease: 'power3.out', delay: 0.1 }
     );
   }
 
-  const tl = gsap.timeline({ delay: 0.3 });
-  tl.fromTo('.about-hero__label', { opacity: 0 }, { opacity: 1, duration: 0.9, ease: 'power2.out' })
-    .fromTo('.about-hero__sub',   { opacity: 0 }, { opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.5');
+  const tl = gsap.timeline({ delay: 0.2 });
+  tl.fromTo('.about-hero__label', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' })
+    .fromTo('.about-hero__sub',   { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out' }, '-=0.2');
 
-  /* Легкий parallax для декора — один раз, без повторов */
   gsap.to('.about-hero__decor', {
     yPercent: 16, ease: 'none',
     scrollTrigger: { trigger: '.about-hero', start: 'top top', end: 'bottom top', scrub: 1 }
   });
 }
 
-/* ── Счётчик статистики (once при скролле) ── */
+/* ── Stats counter ── */
 function initStatsCounter() {
   qsa('.about-stat__num').forEach(el => {
     const raw    = el.dataset.count || el.textContent.replace(/[^0-9]/g, '');
@@ -351,7 +353,7 @@ function initStatsCounter() {
       trigger: el, start: 'top 88%', once: true,
       onEnter() {
         gsap.to(obj, {
-          val: target, duration: 1.8, ease: 'power2.out',
+          val: target, duration: 1.4, ease: 'power2.out',
           onUpdate() {
             el.textContent = Math.round(obj.val) + suffix;
           }
