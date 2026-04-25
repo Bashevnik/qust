@@ -306,10 +306,9 @@ body.cursor-hover .cursor-ring { width: 36px; height: 36px; border-color: var(--
 /* ── MARQUEE ── */
 .marquee {
   overflow: hidden;
-  border-top: 1px solid var(--br);
-  border-bottom: 1px solid var(--br);
-  padding: 13px 0;
+  padding: 16px 0;
   white-space: nowrap;
+  opacity: 0.28;
 }
 .marquee__track {
   display: inline-flex;
@@ -375,6 +374,30 @@ body.cursor-hover .cursor-ring { width: 36px; height: 36px; border-color: var(--
   transition: transform .8s var(--ease);
 }
 .f-card:hover .f-card__ph { transform: scale(1.03); }
+
+/* caption overlaid on photo */
+.f-card__overlay-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 48px 20px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 100%);
+  z-index: 3;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.f-card__overlay-caption--sm {
+  padding: 32px 14px 14px;
+}
+.f-card__overlay-caption .f-card__name {
+  color: #F5F5F0;
+  font-size: clamp(18px,2.4vw,32px);
+}
+.f-card__overlay-caption .f-card__name--sm {
+  font-size: 10px;
+  color: #F5F5F0;
+}
+.f-card__overlay-caption .f-card__price {
+  color: rgba(245,245,240,.65);
+}
 
 /* subtle dark overlay on hover */
 .f-card__img::before {
@@ -505,7 +528,6 @@ body.cursor-hover .cursor-ring { width: 36px; height: 36px; border-color: var(--
 .about-split__text {
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: clamp(48px,7vw,100px) var(--gap) clamp(48px,7vw,100px) clamp(40px,6vw,88px);
-  background: var(--surface);
 }
 .about-split__eyebrow { display: block; margin-bottom: 20px; }
 .about-split__title {
