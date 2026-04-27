@@ -3,378 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>вещи — QUST</title>
-  <meta name="description" content="qust — вещи SS25. форма без лишнего. под заказ.">
+  <title>QUST — Каталог</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="catalog">
 
-  <!-- Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
+  <div class="grain"></div>
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- Preloader -->
-  <div class="preloader">
-    <div class="preloader__logo">shop</div>
-    <div class="preloader__line"></div>
-    <div class="preloader__counter">000%</div>
-  </div>
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <nav class="nav nav--light">
+    <a href="index.html" class="nav__logo">QUST</a>
+    <ul class="nav__links">
+      <li><a href="catalog.html">Shop</a></li>
+      <li><a href="new-drop.html">New Drop</a></li>
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" aria-hidden="true">
-    <nav class="mobile-menu__links">
-      <a href="index.html"   class="mobile-menu__link"><span>главная</span></a>
-      <a href="catalog.html" class="mobile-menu__link"><span>вещи</span></a>
-      <a href="about.html"   class="mobile-menu__link"><span>о проекте</span></a>
-    </nav>
-    <div class="mobile-menu__footer">
-      <div class="mobile-menu__socials">
-        <a href="#" class="mobile-menu__social">TG</a>
-        <a href="#" class="mobile-menu__social">VK</a>
-        <a href="#" class="mobile-menu__social">IG</a>
+  <main class="page">
+
+    <!-- ── HEADER ───────────────────────────────────────────── -->
+    <div class="cat-header">
+      <h1 class="cat-header__title">
+        Ката<span>лог</span>
+      </h1>
+      <div class="cat-header__row">
+        <span class="cat-header__count label">SS 2025 — 6 вещей</span>
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="outerwear">Верхняя одежда</button>
+          <button class="filter-btn" data-filter="tops">Верх</button>
+          <button class="filter-btn" data-filter="bottoms">Низ</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Navigation -->
-  <header class="nav">
-    <a href="index.html" class="nav__logo">qust</a>
-    <nav class="nav__links">
-      <a href="index.html"   class="nav__link">главная</a>
-      <a href="catalog.html" class="nav__link active">вещи</a>
-      <a href="about.html"   class="nav__link">о проекте</a>
-    </nav>
-    <button class="nav__menu-btn" aria-label="Меню">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
+    <div class="sp-lg"></div>
 
-  <main>
+    <!-- ── GRID ─────────────────────────────────────────────── -->
+    <section class="cat-wrap">
+      <div class="cat-grid">
 
-    <!-- CATALOG HERO -->
-    <section class="catalog-hero container">
-      <p class="label catalog-hero__label">SS25 / вещи</p>
-      <div class="catalog-hero__top">
-        <h1 class="catalog-hero__title">вещи</h1>
-        <span class="catalog-hero__count products-count">8 товаров</span>
+        <article class="card" data-cat="outerwear">
+          <div class="card__media">
+            <!-- <img src="img/prod-1.jpg" alt="Heavy Jacket" class="card__img"> -->
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">Heavy Jacket</span>
+            <span class="card__price">12 800 ₽</span>
+          </div>
+          <span class="card__tag">Outerwear</span>
+        </article>
+
+        <article class="card" data-cat="tops">
+          <div class="card__media">
+            <!-- <img src="img/prod-2.jpg" alt="Raw Hoodie" class="card__img"> -->
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">Raw Hoodie</span>
+            <span class="card__price">6 400 ₽</span>
+          </div>
+          <span class="card__tag">Tops</span>
+        </article>
+
+        <article class="card" data-cat="bottoms">
+          <div class="card__media">
+            <!-- <img src="img/prod-3.jpg" alt="Utility Pants" class="card__img"> -->
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">Utility Pants</span>
+            <span class="card__price">8 200 ₽</span>
+          </div>
+          <span class="card__tag">Bottoms</span>
+        </article>
+
+        <article class="card" data-cat="tops">
+          <div class="card__media">
+            <!-- <img src="img/prod-4.jpg" alt="Washed Tee" class="card__img"> -->
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">Washed Tee</span>
+            <span class="card__price">3 600 ₽</span>
+          </div>
+          <span class="card__tag">Tops</span>
+        </article>
+
+        <article class="card" data-cat="outerwear">
+          <div class="card__media">
+            <!-- <img src="img/prod-5.jpg" alt="Long Coat" class="card__img"> -->
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">Long Coat</span>
+            <span class="card__price">18 400 ₽</span>
+          </div>
+          <span class="card__tag">Outerwear</span>
+        </article>
+
+        <article class="card" data-cat="bottoms">
+          <div class="card__media">
+            <!-- <img src="img/prod-6.jpg" alt="Cargo Short" class="card__img"> -->
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">Cargo Short</span>
+            <span class="card__price">5 200 ₽</span>
+          </div>
+          <span class="card__tag">Bottoms</span>
+        </article>
+
       </div>
     </section>
 
-    <!-- CATALOG LAYOUT -->
-    <div class="catalog-layout container">
-
-      <!-- FILTERS SIDEBAR -->
-      <aside class="filters">
-        <div class="filters__title">Фильтры</div>
-
-        <!-- Category -->
-        <div class="filter-group">
-          <div class="filter-group__label">категория</div>
-          <div class="filter-options">
-            <label class="filter-option">
-              <input type="checkbox" class="filter-category" value="hoodie">
-              <span class="filter-option__text">худи и куртки</span>
-              <span class="filter-option__count">4</span>
-            </label>
-            <label class="filter-option">
-              <input type="checkbox" class="filter-category" value="pants">
-              <span class="filter-option__text">брюки и шорты</span>
-              <span class="filter-option__count">2</span>
-            </label>
-            <label class="filter-option">
-              <input type="checkbox" class="filter-category" value="accessories">
-              <span class="filter-option__text">аксессуары</span>
-              <span class="filter-option__count">2</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Price -->
-        <div class="filter-group">
-          <div class="filter-group__label">цена до</div>
-          <div class="price-range">
-            <input type="range" id="priceRange" min="1000" max="20000" value="20000" step="500">
-            <div class="price-range__labels">
-              <span>1 000 ₽</span>
-              <span id="priceDisplay">20 000 ₽</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Color -->
-        <div class="filter-group">
-          <div class="filter-group__label">цвет</div>
-          <div class="color-filters">
-            <button class="color-dot color-dot--black" data-color="black" title="Чёрный"></button>
-            <button class="color-dot color-dot--white" data-color="white" title="Белый"></button>
-            <button class="color-dot color-dot--grey"  data-color="grey"  title="Серый"></button>
-          </div>
-        </div>
-
-        <button class="filters__reset">сбросить</button>
-      </aside>
-
-      <!-- PRODUCTS -->
-      <div class="products-section">
-
-        <div class="products-header">
-          <span class="products-count" style="display:none">8 товаров</span>
-          <div class="products-sort">
-            <span class="products-sort__opt active">новое</span>
-            <span class="products-sort__opt">цена ↑</span>
-            <span class="products-sort__opt">цена ↓</span>
-          </div>
-        </div>
-
-        <div class="products-grid">
-
-          <!-- 1. VOID Hoodie -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="hoodie"
-            data-price="9900"
-            data-color="black">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#D8D8D8"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST VOID Hoodie</div>
-              <div class="product-card__desc">
-                Оверсайз силуэт, тяжёлый хлопок 450 г/м², дроп-плечо, карман-кенгуру.
-                Чёрный. Без принта.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">9 900 ₽</span>
-                <span class="product-card__delivery">7–12 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 2. STATIC Pants -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="pants"
-            data-price="8500"
-            data-color="black">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#CACACA"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST STATIC Pants</div>
-              <div class="product-card__desc">
-                Широкий крой, карго-карманы, эластичный пояс. Хлопок + полиэстер.
-                Антрацит.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">8 500 ₽</span>
-                <span class="product-card__delivery">5–10 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 3. NULL Jacket -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="hoodie"
-            data-price="14900"
-            data-color="black">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#C0C0C0"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST NULL Jacket</div>
-              <div class="product-card__desc">
-                Технический нейлон, свободный крой, молния YKK, потайные карманы.
-                Чёрный.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">14 900 ₽</span>
-                <span class="product-card__delivery">10–14 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 4. NOISE Tee -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="hoodie"
-            data-price="4900"
-            data-color="white">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#EBEBEB"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST NOISE Tee</div>
-              <div class="product-card__desc">
-                Хлопок 240 г/м², оверсайз fit, удлинённый крой. Белый.
-                Без принта — чистая форма.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">4 900 ₽</span>
-                <span class="product-card__delivery">3–5 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 5. BLUR Hoodie -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="hoodie"
-            data-price="9900"
-            data-color="grey">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#B8B8B8"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST BLUR Hoodie</div>
-              <div class="product-card__desc">
-                Оверсайз, флисовая подкладка, массивный капюшон. Серый меланж.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">9 900 ₽</span>
-                <span class="product-card__delivery">7–12 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 6. MESH Pants -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="pants"
-            data-price="7500"
-            data-color="black">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#D0D0D0"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST MESH Pants</div>
-              <div class="product-card__desc">
-                Широкие брюки с мешковатым кроем, боковые карманы. Чёрный нейлон.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">7 500 ₽</span>
-                <span class="product-card__delivery">5–10 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 7. DRIFT Cap -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="accessories"
-            data-price="3500"
-            data-color="black">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#C8C8C8"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST DRIFT Cap</div>
-              <div class="product-card__desc">
-                6-панельная кепка, нерегулируемый размер, плотный хлопок. Чёрный.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">3 500 ₽</span>
-                <span class="product-card__delivery">3–5 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- 8. GHOST Socks -->
-          <article class="product-card product-card--full"
-            data-product
-            data-category="accessories"
-            data-price="1900"
-            data-color="white">
-            <div class="product-card__image">
-              <div class="product-card__placeholder" style="background:#E8E8E8"><!-- img --></div>
-              <div class="product-card__overlay"><div class="product-card__view">View</div></div>
-            </div>
-            <div class="product-card__info">
-              <div class="product-card__name">QUST GHOST Socks</div>
-              <div class="product-card__desc">
-                Высокие носки, хлопок + эластан. Белые. Мягкий рубчик.
-                Пара 2 шт.
-              </div>
-              <div class="product-card__meta">
-                <span class="product-card__price">1 900 ₽</span>
-                <span class="product-card__delivery">3–5 дней</span>
-              </div>
-              <div class="product-card__actions">
-                <button class="product-card__btn"><span>заказать</span></button>
-              </div>
-            </div>
-          </article>
-
-          <!-- No results message -->
-          <div class="no-results">Ничего не найдено. Попробуйте сбросить фильтры.</div>
-
-        </div><!-- /products-grid -->
-      </div><!-- /products-section -->
-
-    </div><!-- /catalog-layout -->
+    <div class="sp-xl"></div>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div class="footer__brand">
-          <div class="footer__logo">qust</div>
-          <p class="footer__tagline">форма без лишнего.</p>
-        </div>
-        <nav class="footer__nav">
-          <div class="footer__nav-title">навигация</div>
-          <div class="footer__nav-links">
-            <a href="index.html"   class="footer__nav-link">главная</a>
-            <a href="catalog.html" class="footer__nav-link">вещи</a>
-            <a href="about.html"   class="footer__nav-link">о проекте</a>
-          </div>
-        </nav>
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer__top">
+      <div class="footer__wordmark">QUST</div>
+      <nav class="footer__nav">
         <div>
-          <div class="footer__nav-title">контакты</div>
-          <div class="footer__socials">
-            <a href="#" class="footer__social">telegram →</a>
-            <a href="#" class="footer__social">vk →</a>
-            <a href="#" class="footer__social">instagram →</a>
-          </div>
+          <p class="footer__col-title">Навигация</p>
+          <ul class="footer__col-links">
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="about.html">О бренде</a></li>
+          </ul>
         </div>
-      </div>
-      <div class="footer__bottom">
-        <span class="footer__copy">© 2025 qust.</span>
-        <span class="footer__copy">форма без лишнего.</span>
-      </div>
+        <div>
+          <p class="footer__col-title">Контакт</p>
+          <ul class="footer__col-links">
+            <li><a href="mailto:qust@mail.ru">qust@mail.ru</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Telegram</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">&copy; 2025 QUST Studio</span>
+      <span class="footer__city">Moscow, Russia</span>
     </div>
   </footer>
 
