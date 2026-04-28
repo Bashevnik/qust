@@ -2,6 +2,15 @@
    QUST — Global Stylesheet
    ═══════════════════════════════════════════════════════════ */
 
+/* ── FONT FACE ──────────────────────────────────────────────── */
+@font-face {
+  font-family: 'SimpleMonologue';
+  src: url('../fonts/SimpleMonologue.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── RESET ─────────────────────────────────────────────────── */
 *,
 *::before,
@@ -17,7 +26,7 @@
   --blush: #F4BFB1;
   --petal: #F6B2B1;
   --white: #FFFFFF;
-  --magenta: #;
+  --magenta: #A42A81;
 
   --grad-h: linear-gradient(135deg, #F4BFB1 0%, #A25776 100%);
   --grad-v: linear-gradient(180deg, #F6B2B1 0%, #A42A81 100%);
@@ -28,11 +37,9 @@
   --ink-mute: #b08898;
   --border: rgba(162, 87, 118, 0.12);
 
-  /* ── FONTS
-     Baskervville — sharp old-style serif, 400 only; italic is the weapon
-     Inter — ultra-light neutral body / labels                             */
-  --font-head: 'Baskervville', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  /* SimpleMonologue everywhere — one font, full site */
+  --font-head: 'SimpleMonologue', serif;
+  --font-body: 'SimpleMonologue', serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
