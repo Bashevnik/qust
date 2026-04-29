@@ -4,8 +4,8 @@
 
 /* ── FONT FACE ──────────────────────────────────────────────── */
 @font-face {
-  font-family: 'SimpleMonologue';
-  src: url('../fonts/SimpleMonologue.ttf') format('truetype');
+  font-family: 'Sleeping';
+  src: url('../fonts/Sleeping.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -37,9 +37,9 @@
   --ink-mute: #b08898;
   --border: rgba(162, 87, 118, 0.12);
 
-  /* SimpleMonologue everywhere — one font, full site */
-  --font-head: 'SimpleMonologue', serif;
-  --font-body: 'SimpleMonologue', serif;
+  /* Sleeping everywhere — one font, full site */
+  --font-head: 'Sleeping', serif;
+  --font-body: 'Sleeping', serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
