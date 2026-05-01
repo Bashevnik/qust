@@ -3,13 +3,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 /* ── FONT FACE ──────────────────────────────────────────────── */
-@font-face {
-  font-family: 'Sleeping';
-  src: url('../fonts/Sleeping.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
 
 /* ── RESET ─────────────────────────────────────────────────── */
 *,
@@ -37,9 +31,9 @@
   --ink-mute: #b08898;
   --border: rgba(162, 87, 118, 0.12);
 
-  /* Sleeping everywhere — one font, full site */
-  --font-head: 'Sleeping', serif;
-  --font-body: 'Sleeping', serif;
+  /* Birthstone everywhere — one font, full site */
+  --font-head: 'Birthstone', cursive;
+  --font-body: 'Birthstone', cursive;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
