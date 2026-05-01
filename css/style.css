@@ -3,7 +3,7 @@
    ═══════════════════════════════════════════════════════════ */
 
 /* ── FONT FACE ──────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Birthstone&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Birthstone&family=Whisper&display=swap');
 
 /* ── RESET ─────────────────────────────────────────────────── */
 *,
@@ -31,9 +31,9 @@
   --ink-mute: #b08898;
   --border: rgba(162, 87, 118, 0.12);
 
-  /* Birthstone everywhere — one font, full site */
-  --font-head: 'Birthstone', cursive;
-  --font-body: 'Birthstone', cursive;
+  /* Whisper everywhere — one font, full site */
+  --font-head: 'Whisper', cursive;
+  --font-body: 'Whisper', cursive;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
