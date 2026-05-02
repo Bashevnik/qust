@@ -27,45 +27,65 @@
     <!-- ── HEADER ───────────────────────────────────────────── -->
     <div class="cat-header">
       <h1 class="cat-header__title">Ката<span>лог</span></h1>
-      <div class="cat-header__row">
-        <span class="cat-header__count label" id="catCount">SS 2025</span>
-        <div class="filters" id="catFilters">
-          <button class="filter-btn active" data-filter="all">Все</button>
-          <button class="filter-btn" data-filter="gloves">Перчатки</button>
-          <button class="filter-btn" data-filter="tops">Футболки</button>
-          <button class="filter-btn" data-filter="sweatshirts">Свитшоты</button>
-          <button class="filter-btn" data-filter="zip-hoodies">Зип-худи</button>
-          <button class="filter-btn" data-filter="hoodies">Худи</button>
-          <button class="filter-btn" data-filter="shirts">Рубашки</button>
-        </div>
-      </div>
+      <span class="cat-header__count label" id="catCount">SS 2025</span>
     </div>
 
-    <!-- ── PRICE SLIDER ─────────────────────────────────────── -->
-    <div class="price-filter">
-      <div class="price-filter__labels">
-        <span class="label">Цена</span>
-        <span class="price-filter__range">
-          <span id="labelMin">999 ₽</span>
-          <span class="price-filter__dash">—</span>
-          <span id="labelMax">5 555 ₽</span>
-        </span>
-      </div>
-      <div class="price-filter__slider">
-        <div class="price-filter__track">
-          <div class="price-filter__fill" id="sliderFill"></div>
-        </div>
-        <input type="range" id="rangeMin" min="999" max="5555" value="999" step="1">
-        <input type="range" id="rangeMax" min="999" max="5555" value="5555" step="1">
-      </div>
-    </div>
+    <!-- ── STICKY FILTER PANEL ──────────────────────────────── -->
+    <div class="filter-panel" id="filterPanel">
 
-    <div class="sp-lg"></div>
+      <!-- Категория -->
+      <div class="filter-row">
+        <span class="filter-row__label">Категория</span>
+        <div class="filter-row__opts" id="catOpts">
+          <button class="fpill active" data-cat="all">Все</button>
+          <button class="fpill" data-cat="gloves">Перчатки</button>
+          <button class="fpill" data-cat="tops">Футболки</button>
+          <button class="fpill" data-cat="sweatshirts">Свитшоты</button>
+          <button class="fpill" data-cat="zip-hoodies">Зип-худи</button>
+          <button class="fpill" data-cat="hoodies">Худи</button>
+          <button class="fpill" data-cat="shirts">Рубашки</button>
+        </div>
+      </div>
+
+      <!-- Цвет -->
+      <div class="filter-row">
+        <span class="filter-row__label">Цвет</span>
+        <div class="filter-row__opts" id="colorOpts">
+          <button class="fcolor" data-color="черный"       title="Черный"       style="background:#1c1c1c"></button>
+          <button class="fcolor" data-color="серый"        title="Серый"        style="background:#909090"></button>
+          <button class="fcolor" data-color="белый"        title="Белый"        style="background:#f2f2f2; border: 1.5px solid #ccc"></button>
+          <button class="fcolor" data-color="разноцветный" title="Разноцветный" style="background: conic-gradient(#e84393,#f6b73c,#4caf50,#2196f3,#9c27b0,#e84393)"></button>
+        </div>
+      </div>
+
+      <!-- Цена -->
+      <div class="filter-row">
+        <span class="filter-row__label">Цена</span>
+        <div class="filter-row__opts filter-row__opts--price">
+          <span class="fprice-val" id="labelMin">999 ₽</span>
+          <div class="fprice-slider" id="fpriceSlider">
+            <div class="fprice-track">
+              <div class="fprice-fill" id="priceFill"></div>
+            </div>
+            <input type="range" id="rangeMin" min="999" max="5555" value="999"  step="1">
+            <input type="range" id="rangeMax" min="999" max="5555" value="5555" step="1">
+          </div>
+          <span class="fprice-val" id="labelMax">5 555 ₽</span>
+        </div>
+      </div>
+
+      <!-- Активные фильтры -->
+      <div class="filter-chips-row" id="chipsRow" style="display:none">
+        <div class="filter-chips" id="filterChips"></div>
+        <button class="filter-reset" id="filterReset">Сбросить всё</button>
+      </div>
+
+    </div>
 
     <!-- ── GRID ─────────────────────────────────────────────── -->
     <section class="cat-wrap">
       <div class="cat-grid" id="catGrid"></div>
-      <p class="cat-empty" id="catEmpty">Нет товаров в этом диапазоне</p>
+      <p class="cat-empty" id="catEmpty">Нет товаров по выбранным фильтрам</p>
     </section>
 
     <div class="sp-xl"></div>
@@ -104,109 +124,188 @@
   <script src="js/products.js"></script>
   <script src="js/main.js"></script>
   <script>
-    (function () {
-      const grid     = document.getElementById('catGrid');
-      const empty    = document.getElementById('catEmpty');
-      const count    = document.getElementById('catCount');
-      const labelMin = document.getElementById('labelMin');
-      const labelMax = document.getElementById('labelMax');
-      const fill     = document.getElementById('sliderFill');
-      const rangeMin = document.getElementById('rangeMin');
-      const rangeMax = document.getElementById('rangeMax');
+  (function () {
+    const MIN = 999, MAX = 5555;
 
-      const MIN_PRICE = 999;
-      const MAX_PRICE = 5555;
+    const state = {
+      cat:      'all',
+      colors:   new Set(),
+      priceMin: MIN,
+      priceMax: MAX,
+    };
 
-      let activeCat = 'all';
-      let priceMin  = MIN_PRICE;
-      let priceMax  = MAX_PRICE;
+    const catLabels = {
+      gloves: 'Перчатки', tops: 'Футболки', sweatshirts: 'Свитшоты',
+      'zip-hoodies': 'Зип-худи', hoodies: 'Худи', shirts: 'Рубашки'
+    };
 
-      function fmt(n) {
-        return n.toLocaleString('ru') + ' ₽';
-      }
+    const $grid     = document.getElementById('catGrid');
+    const $empty    = document.getElementById('catEmpty');
+    const $count    = document.getElementById('catCount');
+    const $chips    = document.getElementById('filterChips');
+    const $chipsRow = document.getElementById('chipsRow');
+    const $reset    = document.getElementById('filterReset');
+    const $fill     = document.getElementById('priceFill');
+    const $rMin     = document.getElementById('rangeMin');
+    const $rMax     = document.getElementById('rangeMax');
+    const $lMin     = document.getElementById('labelMin');
+    const $lMax     = document.getElementById('labelMax');
 
-      function plural(n, one, few, many) {
-        const m10  = n % 10;
-        const m100 = n % 100;
-        if (m100 >= 11 && m100 <= 14) return many;
-        if (m10 === 1) return one;
-        if (m10 >= 2 && m10 <= 4) return few;
-        return many;
-      }
+    function fmt(n) { return n.toLocaleString('ru') + ' ₽'; }
+    function plural(n) {
+      const m = n % 10, h = n % 100;
+      if (h >= 11 && h <= 14) return 'вещей';
+      if (m === 1) return 'вещь';
+      if (m >= 2 && m <= 4) return 'вещи';
+      return 'вещей';
+    }
 
-      function updateFill() {
-        const lo = ((priceMin - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100;
-        const hi = ((priceMax - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100;
-        fill.style.left  = lo + '%';
-        fill.style.width = (hi - lo) + '%';
-      }
+    function matches(p) {
+      return (state.cat === 'all' || p.cat === state.cat)
+          && (state.colors.size === 0 || state.colors.has(p.color))
+          && p.price >= state.priceMin && p.price <= state.priceMax;
+    }
 
-      function renderCards() {
-        const visible = PRODUCTS.filter(p => {
-          const catOk   = activeCat === 'all' || p.cat === activeCat;
-          const priceOk = p.price >= priceMin && p.price <= priceMax;
-          return catOk && priceOk;
+    // ── FILL ────────────────────────────────────────────────────
+    function updateFill() {
+      const lo = ((state.priceMin - MIN) / (MAX - MIN)) * 100;
+      const hi = ((state.priceMax - MIN) / (MAX - MIN)) * 100;
+      $fill.style.left  = lo + '%';
+      $fill.style.width = (hi - lo) + '%';
+      $lMin.textContent = fmt(state.priceMin);
+      $lMax.textContent = fmt(state.priceMax);
+      $rMin.value = state.priceMin;
+      $rMax.value = state.priceMax;
+    }
+
+    // ── CARDS ────────────────────────────────────────────────────
+    function renderCards() {
+      const visible = PRODUCTS.filter(matches);
+      $grid.innerHTML = '';
+      $empty.style.display = visible.length ? 'none' : 'block';
+      $count.textContent   = 'SS 2025 — ' + visible.length + ' ' + plural(visible.length);
+
+      visible.forEach((p, i) => {
+        const a = document.createElement('a');
+        a.className = 'card cat-card-anim';
+        a.href      = 'product.html?id=' + p.id;
+        a.style.animationDelay = (i * 0.04) + 's';
+        a.innerHTML = `
+          <div class="card__media">
+            ${p.images[0]
+              ? `<img src="${p.images[0]}" alt="${p.name}" class="card__img" loading="lazy">`
+              : '<div class="card__placeholder"></div>'
+            }
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">${p.name}</span>
+            <span class="card__price">${fmt(p.price)}</span>
+          </div>
+          <span class="card__tag">${p.type}</span>
+        `;
+        $grid.appendChild(a);
+      });
+    }
+
+    // ── CHIPS ────────────────────────────────────────────────────
+    function renderChips() {
+      $chips.innerHTML = '';
+
+      if (state.cat !== 'all') {
+        addChip(catLabels[state.cat] || state.cat, () => {
+          state.cat = 'all';
+          document.querySelectorAll('.fpill').forEach(b =>
+            b.classList.toggle('active', b.dataset.cat === 'all'));
+          renderAll();
         });
+      }
 
-        grid.innerHTML = '';
-        empty.style.display = visible.length ? 'none' : 'block';
-        count.textContent   = 'SS 2025 — ' + visible.length + ' ' +
-          plural(visible.length, 'вещь', 'вещи', 'вещей');
+      state.colors.forEach(c => {
+        addChip(c, () => {
+          state.colors.delete(c);
+          document.querySelectorAll('.fcolor').forEach(b =>
+            b.classList.toggle('active', state.colors.has(b.dataset.color)));
+          renderAll();
+        });
+      });
 
-        visible.forEach((p, i) => {
-          const thumb = p.images[0] || '';
-          const card  = document.createElement('a');
-          card.className       = 'card cat-card-anim';
-          card.href            = 'product.html?id=' + p.id;
-          card.dataset.cat     = p.cat;
-          card.style.animationDelay = (i * 0.04) + 's';
-          card.innerHTML = `
-            <div class="card__media">
-              ${thumb
-                ? `<img src="${thumb}" alt="${p.name}" class="card__img" loading="lazy">`
-                : '<div class="card__placeholder"></div>'
-              }
-              <div class="card__shimmer"></div>
-              <div class="card__veil"></div>
-            </div>
-            <div class="card__info">
-              <span class="card__name">${p.name}</span>
-              <span class="card__price">${fmt(p.price)}</span>
-            </div>
-            <span class="card__tag">${p.type}</span>
-          `;
-          grid.appendChild(card);
+      const priceChanged = state.priceMin > MIN || state.priceMax < MAX;
+      if (priceChanged) {
+        addChip(fmt(state.priceMin) + ' — ' + fmt(state.priceMax), () => {
+          state.priceMin = MIN;
+          state.priceMax = MAX;
+          updateFill();
+          renderAll();
         });
       }
 
-      document.getElementById('catFilters').addEventListener('click', e => {
-        const btn = e.target.closest('.filter-btn');
-        if (!btn) return;
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCat = btn.dataset.filter;
-        renderCards();
-      });
+      const hasChips = $chips.children.length > 0;
+      $chipsRow.style.display = hasChips ? 'flex' : 'none';
+    }
 
-      rangeMin.addEventListener('input', () => {
-        priceMin = Math.min(parseInt(rangeMin.value), priceMax - 1);
-        rangeMin.value = priceMin;
-        labelMin.textContent = fmt(priceMin);
-        updateFill();
-        renderCards();
-      });
+    function addChip(label, onRemove) {
+      const chip = document.createElement('span');
+      chip.className = 'filter-chip';
+      chip.innerHTML = label + '<span class="filter-chip__x">×</span>';
+      chip.querySelector('.filter-chip__x').addEventListener('click', onRemove);
+      $chips.appendChild(chip);
+    }
 
-      rangeMax.addEventListener('input', () => {
-        priceMax = Math.max(parseInt(rangeMax.value), priceMin + 1);
-        rangeMax.value = priceMax;
-        labelMax.textContent = fmt(priceMax);
-        updateFill();
-        renderCards();
-      });
-
-      updateFill();
+    function renderAll() {
       renderCards();
-    })();
+      renderChips();
+    }
+
+    // ── EVENTS ───────────────────────────────────────────────────
+    document.getElementById('catOpts').addEventListener('click', e => {
+      const btn = e.target.closest('.fpill');
+      if (!btn) return;
+      document.querySelectorAll('.fpill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.cat = btn.dataset.cat;
+      renderAll();
+    });
+
+    document.getElementById('colorOpts').addEventListener('click', e => {
+      const btn = e.target.closest('.fcolor');
+      if (!btn) return;
+      const c = btn.dataset.color;
+      if (state.colors.has(c)) state.colors.delete(c);
+      else state.colors.add(c);
+      btn.classList.toggle('active', state.colors.has(c));
+      renderAll();
+    });
+
+    $rMin.addEventListener('input', () => {
+      state.priceMin = Math.min(parseInt($rMin.value), state.priceMax - 1);
+      updateFill();
+      renderAll();
+    });
+
+    $rMax.addEventListener('input', () => {
+      state.priceMax = Math.max(parseInt($rMax.value), state.priceMin + 1);
+      updateFill();
+      renderAll();
+    });
+
+    $reset.addEventListener('click', () => {
+      state.cat      = 'all';
+      state.colors   = new Set();
+      state.priceMin = MIN;
+      state.priceMax = MAX;
+      document.querySelectorAll('.fpill').forEach(b =>
+        b.classList.toggle('active', b.dataset.cat === 'all'));
+      document.querySelectorAll('.fcolor').forEach(b => b.classList.remove('active'));
+      updateFill();
+      renderAll();
+    });
+
+    // ── INIT ─────────────────────────────────────────────────────
+    updateFill();
+    renderAll();
+  })();
   </script>
 </body>
 </html>
