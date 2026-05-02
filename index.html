@@ -60,48 +60,7 @@
         <a href="catalog.html" class="arrow-link">Весь каталог</a>
       </div>
 
-      <div class="featured__grid">
-
-        <article class="card">
-          <div class="card__media">
-            <!-- <img src="img/prod-1.jpg" alt="Heavy Jacket" class="card__img"> -->
-            <div class="card__shimmer"></div>
-            <div class="card__veil"></div>
-          </div>
-          <div class="card__info">
-            <span class="card__name">Heavy<br>Jacket</span>
-            <span class="card__price">12 800 ₽</span>
-          </div>
-          <span class="card__tag">SS 2025</span>
-        </article>
-
-        <article class="card">
-          <div class="card__media">
-            <!-- <img src="img/prod-2.jpg" alt="Raw Hoodie" class="card__img"> -->
-            <div class="card__shimmer"></div>
-            <div class="card__veil"></div>
-          </div>
-          <div class="card__info">
-            <span class="card__name">Raw<br>Hoodie</span>
-            <span class="card__price">6 400 ₽</span>
-          </div>
-          <span class="card__tag">SS 2025</span>
-        </article>
-
-        <article class="card">
-          <div class="card__media">
-            <!-- <img src="img/prod-3.jpg" alt="Utility Pants" class="card__img"> -->
-            <div class="card__shimmer"></div>
-            <div class="card__veil"></div>
-          </div>
-          <div class="card__info">
-            <span class="card__name">Utility<br>Pants</span>
-            <span class="card__price">8 200 ₽</span>
-          </div>
-          <span class="card__tag">SS 2025</span>
-        </article>
-
-      </div>
+      <div class="featured__grid" id="featuredGrid"></div>
     </section>
 
     <div class="sp-xl"></div>
@@ -202,7 +161,32 @@
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/products.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const grid     = document.getElementById('featuredGrid');
+      const featured = PRODUCTS.filter(p => p.images.length > 0).slice(0, 3);
+      featured.forEach(p => {
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.href      = 'product.html?id=' + p.id;
+        a.innerHTML = `
+          <div class="card__media">
+            <img src="${p.images[0]}" alt="${p.name}" class="card__img" loading="lazy">
+            <div class="card__shimmer"></div>
+            <div class="card__veil"></div>
+          </div>
+          <div class="card__info">
+            <span class="card__name">${p.name}</span>
+            <span class="card__price">${p.price.toLocaleString('ru')} ₽</span>
+          </div>
+          <span class="card__tag">${p.type}</span>
+        `;
+        grid.appendChild(a);
+      });
+    })();
+  </script>
 </body>
 
 </html>

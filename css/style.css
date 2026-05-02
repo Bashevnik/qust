@@ -172,11 +172,12 @@ img {
 
 .nav__logo {
   font-family: var(--font-head);
-  font-size: 1rem;
+  font-size: 1.65rem;
   font-weight: 400;
   font-style: italic;
-  letter-spacing: .1em;
+  letter-spacing: .12em;
   color: var(--white);
+  text-shadow: 0 0 24px rgba(255,255,255,.35);
   transition: opacity .3s;
   cursor: none;
 }

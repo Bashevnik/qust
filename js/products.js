@@ -7,7 +7,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "черный",
-    images: ["images/it's not D&G.jpg", "images/it's not D&G2.jpg"],
+    images: ["images/gloves-itsnot-dg-1.jpg", "images/gloves-itsnot-dg-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% it's not freshness",
@@ -22,7 +22,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "черный",
-    images: ["images/Перчатки «Улыбнись!».jpg", "images/Перчатки «Улыбнись!»2.jpg"],
+    images: ["images/gloves-smile-1.jpg", "images/gloves-smile-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% freshness",
@@ -37,7 +37,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "черный",
-    images: ["images/«over-rotators».jpg", "images/«over-rotators»2.jpg"],
+    images: ["images/gloves-over-rotators-1.jpg", "images/gloves-over-rotators-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% freshness",
@@ -52,7 +52,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "разноцветный",
-    images: ["images/«delicacy».jpg", "images/«delicacy»2.jpg"],
+    images: ["images/gloves-delicacy-1.jpg", "images/gloves-delicacy-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% freshness",
@@ -67,7 +67,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "серый",
-    images: ["images/«pleasant».jpg", "images/«pleasant»2.jpg"],
+    images: ["images/gloves-pleasant-1.jpg", "images/gloves-pleasant-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% freshness",
@@ -82,7 +82,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "черный",
-    images: ["images/nothing extra.jpg", "images/nothing extra2.jpg"],
+    images: ["images/gloves-nothing-extra-1.jpg", "images/gloves-nothing-extra-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% freshness",
@@ -97,7 +97,7 @@ const PRODUCTS = [
     cat: "gloves",
     price: 999,
     color: "белый",
-    images: ["images/«gloomy snowfall».jpg", "images/«gloomy snowfall»2.jpg"],
+    images: ["images/gloves-gloomy-snowfall-1.jpg", "images/gloves-gloomy-snowfall-2.jpg"],
     desc: [
       "Технология Touch — пользоваться гаджетами не снимая перчатку",
       "70% шерсть, 30% freshness",
@@ -114,7 +114,7 @@ const PRODUCTS = [
     cat: "tops",
     price: 2333,
     color: "разноцветный",
-    images: ["images/«gloom».jpg", "images/«gloom»2.jpg", "images/«gloom»3.jpg"],
+    images: ["images/tee-gloom-1.jpg", "images/tee-gloom-2.jpg", "images/tee-gloom-3.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать с лёгким нанесением чёрной краски",
@@ -129,10 +129,10 @@ const PRODUCTS = [
     price: 3555,
     color: "черный",
     images: [
-      "images/музыкальная декада черная.jpg",
-      "images/музыкальная декада черная2.jpg",
-      "images/музыкальная декада черная3.jpg",
-      "images/музыкальная декада черная4.jpg"
+      "images/tee-musical-black-1.jpg",
+      "images/tee-musical-black-2.jpg",
+      "images/tee-musical-black-3.jpg",
+      "images/tee-musical-black-4.jpg"
     ],
     desc: [
       "Легендарная тишка, которая есть у рэп-исполнителя elyaplugg!",
@@ -150,9 +150,9 @@ const PRODUCTS = [
     price: 3555,
     color: "серый",
     images: [
-      "images/музыкальная декада.jpg",
-      "images/музыкальная декада2.jpg",
-      "images/музыкальная декада3.jpg"
+      "images/tee-musical-grey-1.jpg",
+      "images/tee-musical-grey-2.jpg",
+      "images/tee-musical-grey-3.jpg"
     ],
     desc: [
       "100% хлопок, кроп фит",
@@ -168,7 +168,7 @@ const PRODUCTS = [
     cat: "tops",
     price: 3555,
     color: "черный",
-    images: ["images/Улыбнись!V2.jpg", "images/Улыбнись!V22.jpg", "images/Улыбнись!V23.jpg"],
+    images: ["images/smile-v2-1.jpg", "images/smile-v2-2.jpg", "images/smile-v2-3.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "Зип-молния с 2 бегунками",
@@ -183,7 +183,7 @@ const PRODUCTS = [
     cat: "tops",
     price: 3555,
     color: "серый",
-    images: ["images/«Улыбнись.jpg", "images/«Улыбнись2.jpg", "images/«Улыбнись3.jpg"],
+    images: ["images/tee-smile-grey-1.jpg", "images/tee-smile-grey-2.jpg", "images/tee-smile-grey-3.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "Зип-молния с 2 бегунками",
@@ -201,9 +201,9 @@ const PRODUCTS = [
     price: 3999,
     color: "серый",
     images: [
-      "images/музыкальная декада.jpg",
-      "images/музыкальная декада2.jpg",
-      "images/музыкальная декада3.jpg"
+      "images/tee-musical-grey-1.jpg",
+      "images/tee-musical-grey-2.jpg",
+      "images/tee-musical-grey-3.jpg"
     ],
     desc: [
       "100% хлопок, кроп фит",
@@ -264,7 +264,7 @@ const PRODUCTS = [
     cat: "zip-hoodies",
     price: 3444,
     color: "серый",
-    images: ["images/«smiles».jpg", "images/«smiles»2.jpg", "images/«smiles»3.jpg"],
+    images: ["images/zip-smiles-1.jpg", "images/zip-smiles-2.jpg", "images/zip-smiles-3.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать со смайликами и надписью «qust snert» — каст балдёж",
@@ -278,7 +278,7 @@ const PRODUCTS = [
     cat: "zip-hoodies",
     price: 3444,
     color: "черный",
-    images: ["images/Улыбнись!V2.jpg", "images/Улыбнись!V22.jpg", "images/Улыбнись!V23.jpg"],
+    images: ["images/smile-v2-1.jpg", "images/smile-v2-2.jpg", "images/smile-v2-3.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать с надписью «Улыбнись!»",
@@ -292,7 +292,7 @@ const PRODUCTS = [
     cat: "zip-hoodies",
     price: 3444,
     color: "серый",
-    images: ["images/«Улыбнись.jpg", "images/«Улыбнись2.jpg", "images/«Улыбнись3.jpg"],
+    images: ["images/tee-smile-grey-1.jpg", "images/tee-smile-grey-2.jpg", "images/tee-smile-grey-3.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать с надписью «Улыбнись!»",
@@ -309,9 +309,9 @@ const PRODUCTS = [
     price: 3444,
     color: "черный",
     images: [
-      "images/tangled headphones.jpg",
-      "images/tangled headphones2.jpg",
-      "images/tangled headphones3.jpg"
+      "images/hoodie-tangled-1.jpg",
+      "images/hoodie-tangled-2.jpg",
+      "images/hoodie-tangled-3.jpg"
     ],
     desc: [
       "75% хлопок, 25% полиэстер, кроп фит",
@@ -328,7 +328,7 @@ const PRODUCTS = [
     cat: "shirts",
     price: 4555,
     color: "белый",
-    images: ["images/basis.jpg", "images/basis2.jpg", "images/basis3.jpg"],
+    images: ["images/shirt-basis-1.jpg", "images/shirt-basis-2.jpg", "images/shirt-basis-3.jpg"],
     desc: [
       "Ткань «тиси», кроп фит",
       "На пуговицах, слегка расклешённый рукав",
@@ -343,9 +343,9 @@ const PRODUCTS = [
     price: 5555,
     color: "белый",
     images: [
-      "images/sleeping beauty.jpg",
-      "images/sleeping beauty2.jpg",
-      "images/sleeping beauty3.jpg"
+      "images/shirt-sleeping-beauty-1.jpg",
+      "images/shirt-sleeping-beauty-2.jpg",
+      "images/shirt-sleeping-beauty-3.jpg"
     ],
     desc: [
       "Ткань «тиси», кроп фит",
@@ -361,7 +361,11 @@ const PRODUCTS = [
     cat: "shirts",
     price: 4333,
     color: "черный",
-    images: ["images/way-outV2.jpg", "images/way-outV22.jpg", "images/way-outV3.jpg"],
+    images: [
+      "images/shirt-wayout-v2-1.jpg",
+      "images/shirt-wayout-v2-2.jpg",
+      "images/shirt-wayout-v2-3.jpg"
+    ],
     desc: [
       "Ткань «тиси», кроп фит",
       "На зип-замке, короткий рукав",
@@ -375,7 +379,11 @@ const PRODUCTS = [
     cat: "shirts",
     price: 4333,
     color: "белый",
-    images: ["images/way-out.jpg", "images/way-out2.jpg", "images/way-out3.jpg"],
+    images: [
+      "images/shirt-wayout-1.jpg",
+      "images/shirt-wayout-2.jpg",
+      "images/shirt-wayout-3.jpg"
+    ],
     desc: [
       "Ткань «тиси», кроп фит",
       "На зип-замке, слегка расклешённые рукава с заклёпками",
