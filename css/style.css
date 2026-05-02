@@ -862,7 +862,7 @@ footer {
 
 .cat-header__count {
   display: block;
-  font-size: .54rem;
+  font-size: 1.54rem;
   letter-spacing: .26em;
   text-transform: uppercase;
   color: var(--ink-mute);
