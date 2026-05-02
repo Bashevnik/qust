@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>qust — Товар</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="product">
+
+  <div class="grain"></div>
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav nav--light">
+    <a href="index.html" class="nav__logo">qust</a>
+    <ul class="nav__links">
+      <li><a href="catalog.html">Shop</a></li>
+      <li><a href="new-drop.html">New Drop</a></li>
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+
+    <div class="prod-back">
+      <a href="catalog.html" class="prod-back__link">
+        <span class="prod-back__arrow">←</span> Каталог
+      </a>
+    </div>
+
+    <!-- ── PRODUCT LAYOUT ───────────────────────────────────── -->
+    <section class="prod-layout" id="prodLayout">
+
+      <!-- LEFT: CAROUSEL -->
+      <div class="prod-gallery">
+        <div class="carousel">
+          <div class="carousel__main" id="carouselMain">
+            <img src="" alt="" class="carousel__img" id="carouselImg">
+            <div class="carousel__placeholder" id="carouselPlaceholder"></div>
+            <button class="carousel__btn carousel__btn--prev" id="carPrev" aria-label="Назад">&#8592;</button>
+            <button class="carousel__btn carousel__btn--next" id="carNext" aria-label="Вперёд">&#8594;</button>
+            <span class="carousel__counter" id="carCounter"></span>
+          </div>
+          <div class="carousel__thumbs" id="carouselThumbs"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INFO -->
+      <div class="prod-info">
+        <p class="prod-info__type label" id="prodType"></p>
+        <h1 class="prod-info__name" id="prodName"></h1>
+        <p class="prod-info__price" id="prodPrice"></p>
+
+        <div class="prod-info__meta">
+          <span class="label">Цвет</span>
+          <span class="prod-info__color" id="prodColor"></span>
+        </div>
+
+        <ul class="prod-info__desc" id="prodDesc"></ul>
+
+        <div class="prod-info__actions">
+          <a href="https://t.me/qust" target="_blank" class="btn-ghost prod-info__order">
+            Заказать в Telegram
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="sp-xl"></div>
+
+  </main>
+
+  <footer>
+    <div class="footer__top">
+      <div class="footer__wordmark">qust</div>
+      <nav class="footer__nav">
+        <div>
+          <p class="footer__col-title">Навигация</p>
+          <ul class="footer__col-links">
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="about.html">О бренде</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Контакт</p>
+          <ul class="footer__col-links">
+            <li><a href="mailto:qust@mail.ru">qust@mail.ru</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Telegram</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">&copy; 2025 qust Studio</span>
+      <span class="footer__city">Moscow, Russia</span>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const id     = params.get('id');
+      const p      = PRODUCTS.find(x => x.id === id);
+
+      if (!p) {
+        document.getElementById('prodLayout').innerHTML =
+          '<p style="padding:4rem;opacity:.5">Товар не найден</p>';
+        return;
+      }
+
+      document.title = 'qust — ' + p.name;
+
+      document.getElementById('prodType').textContent  = p.type;
+      document.getElementById('prodName').textContent  = p.name;
+      document.getElementById('prodPrice').textContent = p.price.toLocaleString('ru') + ' ₽';
+      document.getElementById('prodColor').textContent = p.color;
+
+      const descEl = document.getElementById('prodDesc');
+      p.desc.forEach(line => {
+        const li = document.createElement('li');
+        li.textContent = line;
+        descEl.appendChild(li);
+      });
+
+      // ── CAROUSEL ──────────────────────────────────────────────
+      const mainImg    = document.getElementById('carouselImg');
+      const placeholder= document.getElementById('carouselPlaceholder');
+      const thumbsEl   = document.getElementById('carouselThumbs');
+      const counter    = document.getElementById('carCounter');
+      const btnPrev    = document.getElementById('carPrev');
+      const btnNext    = document.getElementById('carNext');
+
+      const imgs = p.images;
+      let current = 0;
+
+      function showImage(idx) {
+        current = (idx + imgs.length) % imgs.length;
+
+        if (imgs.length === 0) {
+          mainImg.style.display    = 'none';
+          placeholder.style.display = 'block';
+          counter.style.display    = 'none';
+          btnPrev.style.display    = 'none';
+          btnNext.style.display    = 'none';
+          return;
+        }
+
+        mainImg.style.display     = 'block';
+        placeholder.style.display = 'none';
+
+        gsap.to(mainImg, { opacity: 0, duration: 0.15, onComplete: () => {
+          mainImg.src = imgs[current];
+          gsap.to(mainImg, { opacity: 1, duration: 0.25 });
+        }});
+
+        counter.textContent = (current + 1) + ' / ' + imgs.length;
+        counter.style.display = imgs.length > 1 ? 'block' : 'none';
+
+        const hasMultiple = imgs.length > 1;
+        btnPrev.style.display = hasMultiple ? 'flex' : 'none';
+        btnNext.style.display = hasMultiple ? 'flex' : 'none';
+
+        thumbsEl.querySelectorAll('.carousel__thumb').forEach((t, i) => {
+          t.classList.toggle('active', i === current);
+        });
+      }
+
+      // Build thumbnails
+      if (imgs.length > 1) {
+        imgs.forEach((src, i) => {
+          const th = document.createElement('button');
+          th.className = 'carousel__thumb' + (i === 0 ? ' active' : '');
+          th.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+          th.addEventListener('click', () => showImage(i));
+          thumbsEl.appendChild(th);
+        });
+      }
+
+      btnPrev.addEventListener('click', () => showImage(current - 1));
+      btnNext.addEventListener('click', () => showImage(current + 1));
+
+      // Swipe support
+      let touchStartX = 0;
+      mainImg.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      mainImg.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) showImage(current + (dx < 0 ? 1 : -1));
+      });
+
+      showImage(0);
+
+      // entrance animation
+      gsap.from('.prod-gallery', { x: -40, opacity: 0, duration: 0.7, ease: 'power2.out' });
+      gsap.from('.prod-info',    { x:  40, opacity: 0, duration: 0.7, ease: 'power2.out', delay: 0.15 });
+    })();
+  </script>
+</body>
+</html>
