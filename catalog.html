@@ -30,58 +30,6 @@
       <span class="cat-header__count label" id="catCount">SS 2025</span>
     </div>
 
-    <!-- ── STICKY FILTER PANEL ──────────────────────────────── -->
-    <div class="filter-panel" id="filterPanel">
-
-      <!-- Категория -->
-      <div class="filter-row">
-        <span class="filter-row__label">Категория</span>
-        <div class="filter-row__opts" id="catOpts">
-          <button class="fpill active" data-cat="all">Все</button>
-          <button class="fpill" data-cat="gloves">Перчатки</button>
-          <button class="fpill" data-cat="tops">Футболки</button>
-          <button class="fpill" data-cat="sweatshirts">Свитшоты</button>
-          <button class="fpill" data-cat="zip-hoodies">Зип-худи</button>
-          <button class="fpill" data-cat="hoodies">Худи</button>
-          <button class="fpill" data-cat="shirts">Рубашки</button>
-        </div>
-      </div>
-
-      <!-- Цвет -->
-      <div class="filter-row">
-        <span class="filter-row__label">Цвет</span>
-        <div class="filter-row__opts" id="colorOpts">
-          <button class="fcolor" data-color="черный"       title="Черный"       style="background:#1c1c1c"></button>
-          <button class="fcolor" data-color="серый"        title="Серый"        style="background:#909090"></button>
-          <button class="fcolor" data-color="белый"        title="Белый"        style="background:#f2f2f2; border: 1.5px solid #ccc"></button>
-          <button class="fcolor" data-color="разноцветный" title="Разноцветный" style="background: conic-gradient(#e84393,#f6b73c,#4caf50,#2196f3,#9c27b0,#e84393)"></button>
-        </div>
-      </div>
-
-      <!-- Цена -->
-      <div class="filter-row">
-        <span class="filter-row__label">Цена</span>
-        <div class="filter-row__opts filter-row__opts--price">
-          <span class="fprice-val" id="labelMin">999 ₽</span>
-          <div class="fprice-slider" id="fpriceSlider">
-            <div class="fprice-track">
-              <div class="fprice-fill" id="priceFill"></div>
-            </div>
-            <input type="range" id="rangeMin" min="999" max="5555" value="999"  step="1">
-            <input type="range" id="rangeMax" min="999" max="5555" value="5555" step="1">
-          </div>
-          <span class="fprice-val" id="labelMax">5 555 ₽</span>
-        </div>
-      </div>
-
-      <!-- Активные фильтры -->
-      <div class="filter-chips-row" id="chipsRow" style="display:none">
-        <div class="filter-chips" id="filterChips"></div>
-        <button class="filter-reset" id="filterReset">Сбросить всё</button>
-      </div>
-
-    </div>
-
     <!-- ── GRID ─────────────────────────────────────────────── -->
     <section class="cat-wrap">
       <div class="cat-grid" id="catGrid"></div>
@@ -91,6 +39,62 @@
     <div class="sp-xl"></div>
 
   </main>
+
+  <!-- ── BOTTOM FILTER BAR ─────────────────────────────────── -->
+  <div class="filter-bar">
+    <div class="filter-bar__cats" id="catOpts">
+      <button class="fpill active" data-cat="all">Все</button>
+      <button class="fpill" data-cat="gloves">Перчатки</button>
+      <button class="fpill" data-cat="tops">Футболки</button>
+      <button class="fpill" data-cat="sweatshirts">Свитшоты</button>
+      <button class="fpill" data-cat="zip-hoodies">Зип-худи</button>
+      <button class="fpill" data-cat="hoodies">Худи</button>
+      <button class="fpill" data-cat="shirts">Рубашки</button>
+    </div>
+    <button class="filter-bar__btn" id="filterToggle" aria-label="Фильтры">
+      <svg width="13" height="10" viewBox="0 0 13 10" fill="none" aria-hidden="true">
+        <path d="M1 1.5h11M3.5 5h6M6 8.5h1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      Фильтр
+      <span class="filter-bar__badge" id="filterBadge"></span>
+    </button>
+  </div>
+
+  <!-- ── FILTER SHEET ───────────────────────────────────────── -->
+  <div class="filter-sheet" id="filterSheet">
+    <div class="filter-sheet__handle"></div>
+
+    <div class="filter-sheet__row">
+      <span class="filter-sheet__label">Цвет</span>
+      <div class="filter-row__opts" id="colorOpts">
+        <button class="fcolor" data-color="черный"       title="Черный"       style="background:#1c1c1c"></button>
+        <button class="fcolor" data-color="серый"        title="Серый"        style="background:#909090"></button>
+        <button class="fcolor" data-color="белый"        title="Белый"        style="background:#f2f2f2; outline: 1px solid #ccc; outline-offset: 0"></button>
+        <button class="fcolor" data-color="разноцветный" title="Разноцветный" style="background: conic-gradient(#e84393,#f6b73c,#4caf50,#2196f3,#9c27b0,#e84393)"></button>
+      </div>
+    </div>
+
+    <div class="filter-sheet__row">
+      <span class="filter-sheet__label">Цена</span>
+      <div class="filter-row__opts filter-row__opts--price">
+        <span class="fprice-val" id="labelMin">999 ₽</span>
+        <div class="fprice-slider">
+          <div class="fprice-track">
+            <div class="fprice-fill" id="priceFill"></div>
+          </div>
+          <input type="range" id="rangeMin" min="999" max="5555" value="999"  step="1">
+          <input type="range" id="rangeMax" min="999" max="5555" value="5555" step="1">
+        </div>
+        <span class="fprice-val" id="labelMax">5 555 ₽</span>
+      </div>
+    </div>
+
+    <div class="filter-chips-row" id="chipsRow" style="display:none">
+      <div class="filter-chips" id="filterChips"></div>
+      <button class="filter-reset" id="filterReset">Сбросить всё</button>
+    </div>
+  </div>
+  <div class="filter-sheet__backdrop" id="filterBackdrop"></div>
 
   <footer>
     <div class="footer__top">
@@ -139,17 +143,21 @@
       'zip-hoodies': 'Зип-худи', hoodies: 'Худи', shirts: 'Рубашки'
     };
 
-    const $grid     = document.getElementById('catGrid');
-    const $empty    = document.getElementById('catEmpty');
-    const $count    = document.getElementById('catCount');
-    const $chips    = document.getElementById('filterChips');
-    const $chipsRow = document.getElementById('chipsRow');
-    const $reset    = document.getElementById('filterReset');
-    const $fill     = document.getElementById('priceFill');
-    const $rMin     = document.getElementById('rangeMin');
-    const $rMax     = document.getElementById('rangeMax');
-    const $lMin     = document.getElementById('labelMin');
-    const $lMax     = document.getElementById('labelMax');
+    const $grid      = document.getElementById('catGrid');
+    const $empty     = document.getElementById('catEmpty');
+    const $count     = document.getElementById('catCount');
+    const $chips     = document.getElementById('filterChips');
+    const $chipsRow  = document.getElementById('chipsRow');
+    const $reset     = document.getElementById('filterReset');
+    const $fill      = document.getElementById('priceFill');
+    const $rMin      = document.getElementById('rangeMin');
+    const $rMax      = document.getElementById('rangeMax');
+    const $lMin      = document.getElementById('labelMin');
+    const $lMax      = document.getElementById('labelMax');
+    const $toggle    = document.getElementById('filterToggle');
+    const $sheet     = document.getElementById('filterSheet');
+    const $backdrop  = document.getElementById('filterBackdrop');
+    const $badge     = document.getElementById('filterBadge');
 
     function fmt(n) { return n.toLocaleString('ru') + ' ₽'; }
     function plural(n) {
@@ -244,6 +252,14 @@
 
       const hasChips = $chips.children.length > 0;
       $chipsRow.style.display = hasChips ? 'flex' : 'none';
+
+      // badge
+      let n = 0;
+      if (state.cat !== 'all') n++;
+      n += state.colors.size;
+      if (state.priceMin > MIN || state.priceMax < MAX) n++;
+      $badge.textContent = n;
+      $badge.classList.toggle('visible', n > 0);
     }
 
     function addChip(label, onRemove) {
@@ -301,6 +317,25 @@
       document.querySelectorAll('.fcolor').forEach(b => b.classList.remove('active'));
       updateFill();
       renderAll();
+    });
+
+    // ── FILTER SHEET TOGGLE ──────────────────────────────────────
+    function closeSheet() {
+      $sheet.classList.remove('open');
+      $backdrop.classList.remove('open');
+      $toggle.classList.remove('active');
+    }
+
+    $toggle.addEventListener('click', () => {
+      const open = $sheet.classList.toggle('open');
+      $backdrop.classList.toggle('open', open);
+      $toggle.classList.toggle('active', open);
+    });
+
+    $backdrop.addEventListener('click', closeSheet);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeSheet();
     });
 
     // ── INIT ─────────────────────────────────────────────────────
