@@ -379,7 +379,7 @@ img {
 .card__media {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
   background: var(--grad-h);
 }
 
@@ -1127,21 +1127,13 @@ footer {
 
 /* ── Product grid ───────────────────────────────────────────── */
 .cat-wrap {
-  padding: 2.5rem var(--side) 0;
+  padding: 2rem var(--side) 0;
 }
 
 .cat-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.cat-grid .card:nth-child(4n+3) {
-  margin-top: -40px;
-}
-
-.cat-grid .card:nth-child(4n+4) {
-  margin-top: 40px;
+  gap: 16px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1734,14 +1726,9 @@ footer {
     padding: .44rem 1rem;
   }
 
-  .cat-grid { grid-template-columns: repeat(2, 1fr); }
-
   .cat-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cat-grid .card {
-    margin-top: 0 !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
 
   .archive-header {

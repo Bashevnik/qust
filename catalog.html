@@ -161,7 +161,8 @@
     }
 
     function matches(p) {
-      return (state.cat === 'all' || p.cat === state.cat)
+      return p.images.length > 0
+          && (state.cat === 'all' || p.cat === state.cat)
           && (state.colors.size === 0 || state.colors.has(p.color))
           && p.price >= state.priceMin && p.price <= state.priceMax;
     }
