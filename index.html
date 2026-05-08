@@ -19,7 +19,6 @@
     <a href="index.html" class="nav__logo">qust</a>
     <ul class="nav__links">
       <li><a href="catalog.html">Shop</a></li>
-      <li><a href="new-drop.html">New Drop</a></li>
       <li><a href="archive.html">Archive</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
@@ -29,20 +28,14 @@
 
     <!-- ── HERO ────────────────────────────────────────────── -->
     <section class="hero">
-      <div class="hero__media">
-        <!--
-          Вставьте реальное фото:
-          <img src="img/hero.jpg" alt="qust SS 2025">
-        -->
-      </div>
-      <div class="hero__overlay"></div>
+      <div class="hero__bg"></div>
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+      <div class="hero__glow hero__glow--3"></div>
 
       <div class="hero__content">
-        <p class="hero__eyebrow">SS 2025 — новая коллекция</p>
-        <h1 class="hero__title">
-          qust
-          <span class="accent">форма без правил</span>
-        </h1>
+        <h1 class="hero__title">qust</h1>
+        <p class="hero__subtitle">SS 2025 — форма без правил</p>
       </div>
 
       <div class="hero__scroll">
@@ -111,18 +104,15 @@
 
     <!-- ── ABOUT TEASER ──────────────────────────────────────── -->
     <section class="about-snap">
-      <div class="about-snap__media">
-        <!-- <img src="img/about.jpg" alt="qust studio" class="about-snap__img"> -->
-      </div>
-      <div class="about-snap__body">
-        <p class="about-snap__num">01</p>
-        <h2 class="about-snap__title">Идея<br>важнее<br>продукта</h2>
-        <p class="about-snap__text">
-          Мы не делаем одежду для масс.<br>
-          Мы делаем объекты для тех,<br>
-          кто понимает без слов.
-        </p>
-        <a href="about.html" class="btn-ghost">О бренде</a>
+      <div class="about-snap__split">
+        <div class="about-snap__left">
+          <h2 class="about-snap__title">Идея<br>важнее<br>продукта</h2>
+        </div>
+        <div class="about-snap__right">
+          <p class="about-snap__text">qust — это манифест формы, отрицающий временные тренды. Мы создаем не просто одежду, а объекты с сильным характером, которые формируют пространство вокруг себя.</p>
+          <p class="about-snap__text">Каждый элемент коллекции продуман до мелочей: от архитектуры кроя до тактильных ощущений ткани. Это выбор тех, кто ценит чистоту линий, премиальное качество и глубокий смысл в каждой детали.</p>
+          <a href="about.html" class="btn-ghost">О бренде</a>
+        </div>
       </div>
     </section>
 
@@ -146,8 +136,15 @@
           <p class="footer__col-title">Контакт</p>
           <ul class="footer__col-links">
             <li><a href="mailto:qust@mail.ru">qust@mail.ru</a></li>
+            <li><a href="https://t.me/qustchill" target="_blank">Telegram</a></li>
             <li><a href="#">Instagram</a></li>
-            <li><a href="#">Telegram</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Правовая информация</p>
+          <ul class="footer__col-links">
+            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+            <li><a href="terms.html">Пользовательское соглашение</a></li>
           </ul>
         </div>
       </nav>
@@ -157,6 +154,14 @@
       <span class="footer__city">Moscow, Russia</span>
     </div>
   </footer>
+
+  <!-- ── COOKIE BANNER ──────────────────────────────────────── -->
+  <div class="cookie-banner" id="cookieBanner">
+    <p class="cookie-banner__text">
+      Мы используем файлы cookie для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с нашей <a href="privacy.html">Политикой конфиденциальности</a>.
+    </p>
+    <button class="cookie-banner__btn" id="cookieBtn">Принять</button>
+  </div>
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

@@ -13,88 +13,82 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- ── NAV ──────────────────────────────────────────────── -->
-  <nav class="nav nav--light">
+  <nav class="nav">
     <a href="index.html" class="nav__logo">qust</a>
     <ul class="nav__links">
       <li><a href="catalog.html">Shop</a></li>
-      <li><a href="new-drop.html">New Drop</a></li>
       <li><a href="archive.html">Archive</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html" class="active">About</a></li>
     </ul>
   </nav>
 
   <main class="page">
 
-    <!-- ── HERO SPLIT ────────────────────────────────────────── -->
-    <section class="about-hero">
-      <div class="about-hero__media">
-        <!--
-          <img src="img/about-hero.jpg" alt="qust" class="about-hero__img">
-        -->
+    <!-- ── HERO CAROUSEL ─────────────────────────────────── -->
+    <section class="ac-hero">
+      <div class="ac-hero__reel" id="acReel">
+        <img src="images/shirt-wayout-1.jpg"         alt="qust" class="ac-hero__img">
+        <img src="images/hoodie-tangled-1.jpg"        alt="qust" class="ac-hero__img">
+        <img src="images/tee-smile-grey-1.jpg"        alt="qust" class="ac-hero__img">
+        <img src="images/tee-musical-black-1.jpg"     alt="qust" class="ac-hero__img">
+        <img src="images/shirt-basis-1.jpg"           alt="qust" class="ac-hero__img">
+        <img src="images/tee-gloom-1.jpg"             alt="qust" class="ac-hero__img">
+        <img src="images/zip-smiles-1.jpg"            alt="qust" class="ac-hero__img">
+        <img src="images/shirt-sleeping-beauty-1.jpg" alt="qust" class="ac-hero__img">
       </div>
+      <div class="ac-hero__veil"></div>
+      <div class="ac-hero__center">
+        <h1 class="ac-hero__wordmark">qust</h1>
+        <p class="ac-hero__sub">Moscow · SS 2025</p>
+      </div>
+      <div class="ac-hero__scroll-hint">scroll</div>
+    </section>
 
-      <div class="about-hero__body">
-        <p class="about-hero__label label">О бренде</p>
+    <!-- ── ADVANTAGES ────────────────────────────────────── -->
+    <section class="adv-section">
+      <p class="adv-section__eyebrow label">Преимущества</p>
+      <h2 class="adv-section__title">
+        Качество —<br>
+        <em>без компромиссов</em>
+      </h2>
 
-        <h1 class="about-hero__title">
-          Одежда —<br>
-          это позиция,<br>
-          <em>не продукт</em>
-        </h1>
-
-        <p class="about-hero__text">
-          qust появился не как бизнес.<br>
-          Как состояние.<br><br>
-          Мы работаем с сырыми материалами,
-          несовершенными формами и тем,
-          что остаётся после шума.
-          Каждая вещь — документ.
-        </p>
-
-        <p class="about-hero__meta">Moscow · SS 2025</p>
+      <div class="adv-grid">
+        <div class="adv-card">
+          <span class="adv-card__num">01</span>
+          <h3 class="adv-card__head">Материалы</h3>
+          <p class="adv-card__body">
+            Только натуральные ткани — хлопок, лён, шерсть.
+            Мы работаем с поставщиками, которые понимают честность.
+          </p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-card__num">02</span>
+          <h3 class="adv-card__head">Крой</h3>
+          <p class="adv-card__body">
+            Каждый силуэт выверен вручную.
+            Форма живёт на теле, а не висит на нём.
+          </p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-card__num">03</span>
+          <h3 class="adv-card__head">Долговечность</h3>
+          <p class="adv-card__body">
+            Вещи, которые становятся лучше со временем.
+            Не теряют форму. Не выцветают. Остаются.
+          </p>
+        </div>
+        <div class="adv-card">
+          <span class="adv-card__num">04</span>
+          <h3 class="adv-card__head">Малый тираж</h3>
+          <p class="adv-card__body">
+            Каждый дроп — ограниченное количество.
+            Ни перепроизводства, ни случайных вещей.
+          </p>
+        </div>
       </div>
     </section>
 
-    <div class="sp-xl"></div>
-
-    <!-- ── VALUES ────────────────────────────────────────────── -->
-    <div class="about-values">
-
-      <div class="value-item">
-        <p class="value-item__num">01</p>
-        <h2 class="value-item__title">Форма</h2>
-        <p class="value-item__text">
-          Силуэт важнее тренда.<br>
-          Структура важнее декора.<br>
-          Форма говорит без слов.
-        </p>
-      </div>
-
-      <div class="value-item">
-        <p class="value-item__num">02</p>
-        <h2 class="value-item__title">Материал</h2>
-        <p class="value-item__text">
-          Сырые ткани, несовершенные<br>
-          текстуры. Всё, что честно<br>
-          стареет вместе с тобой.
-        </p>
-      </div>
-
-      <div class="value-item">
-        <p class="value-item__num">03</p>
-        <h2 class="value-item__title">Позиция</h2>
-        <p class="value-item__text">
-          Не для всех. Для тех,<br>
-          кто понимает без объяснений.<br>
-          Вайб — это не слова.
-        </p>
-      </div>
-
-    </div>
-
-    <div class="sp-xl"></div>
-
-    <!-- ── MARQUEE ───────────────────────────────────────────── -->
+    <!-- ── MARQUEE ───────────────────────────────────────── -->
     <div class="marquee">
       <div class="marquee__track">
         <span class="marquee__item">тишина<span class="dot">·</span></span>
@@ -110,25 +104,38 @@
       </div>
     </div>
 
-    <div class="sp-xl"></div>
+    <!-- ── GOAL + QUOTE ───────────────────────────────────── -->
+    <section class="goal-section">
+      <div class="goal-section__inner">
 
-    <!-- ── GRADIENT BAND ─────────────────────────────────────── -->
-    <div class="grad-band">
-      <span class="grad-band__text">qust</span>
-      <span class="grad-band__label">Moscow · Underground · SS 2025</span>
-    </div>
+        <div class="goal-section__text-col">
+          <p class="label">Наша цель</p>
+          <h2 class="goal-section__title">
+            Создавать вещи,<br>
+            которые остаются
+          </h2>
+          <p class="goal-section__body">
+            Мы не хотим заполнять шкаф.<br>
+            Мы хотим, чтобы в нём было одно — но правильное.<br><br>
+            qust — это не про тренды.<br>
+            Это про то, что останется, когда тренды уйдут.
+          </p>
+        </div>
 
-    <div class="sp-xl"></div>
+        <div class="goal-section__quote-col">
+          <blockquote class="goal-quote">
+            <p class="goal-quote__text">
+              "Одежда — это<br>
+              единственная вещь,<br>
+              которую ты носишь<br>
+              <em>каждый день."</em>
+            </p>
+            <cite class="goal-quote__cite">qust — манифест, SS 2025</cite>
+          </blockquote>
+        </div>
 
-    <!-- ── QUOTE ─────────────────────────────────────────────── -->
-    <div class="about-quote">
-      <p class="about-quote__text">
-        "Про тишину,<br>
-        которая давит<br>
-        <em>громче шума."</em>
-      </p>
-      <p class="about-quote__attr">qust — манифест, SS 2025</p>
-    </div>
+      </div>
+    </section>
 
     <div class="sp-xl"></div>
 
@@ -165,5 +172,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
+  <script>
+  /* ── Hero Carousel ───────────────────────────────────────── */
+  (function () {
+    const reel = document.getElementById('acReel');
+    if (!reel) return;
+
+    const origImgs = Array.from(reel.querySelectorAll('.ac-hero__img'));
+    const n = origImgs.length; // 8
+
+    /* Clone first 4 so the last visible block never shows a gap */
+    for (let i = 0; i < 4; i++) {
+      reel.appendChild(origImgs[i % n].cloneNode(true));
+    }
+
+    let step   = 0;
+    let locked = false;
+
+    function slide() {
+      if (locked) return;
+      step++;
+
+      const imgW = reel.firstElementChild.offsetWidth;
+      reel.style.transition = 'transform 0.92s cubic-bezier(0.16,1,0.3,1)';
+      reel.style.transform  = `translateX(-${step * imgW}px)`;
+
+      /* After showing all originals, reset silently to position 0 */
+      if (step >= n) {
+        locked = true;
+        setTimeout(function () {
+          reel.style.transition = 'none';
+          step = 0;
+          reel.style.transform  = 'translateX(0)';
+          /* Two rAFs ensure paint happens before unlocking */
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { locked = false; });
+          });
+        }, 940);
+      }
+    }
+
+    setInterval(slide, 2500);
+
+    /* Keep pixel offset accurate on resize */
+    window.addEventListener('resize', function () {
+      const imgW = reel.firstElementChild.offsetWidth;
+      reel.style.transition = 'none';
+      reel.style.transform  = `translateX(-${step * imgW}px)`;
+    });
+  })();
+  </script>
+
 </body>
 </html>
