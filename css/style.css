@@ -2593,3 +2593,82 @@ a.card {
     font-size: 2rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   COOKIE BANNER (Premium)
+   ═══════════════════════════════════════════════════════════ */
+.cookie-banner {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: min(calc(100vw - 64px), 380px);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 24px;
+  z-index: 9000;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(40px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.8s var(--ease-out), opacity 0.6s ease;
+}
+
+.cookie-banner.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cookie-banner__text {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.02em;
+}
+
+.cookie-banner__text a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+
+.cookie-banner__text a:hover {
+  opacity: 0.6;
+}
+
+.cookie-banner__btn {
+  background: var(--white);
+  color: var(--ink);
+  border: none;
+  padding: 12px 24px;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-out), background 0.3s;
+}
+
+.cookie-banner__btn:hover {
+  background: #eee;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .cookie-banner {
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+  }
+}
