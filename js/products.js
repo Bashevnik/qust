@@ -114,7 +114,7 @@ const PRODUCTS = [
     cat: "tops",
     price: 2333,
     color: "разноцветный",
-    images: ["images/tee-gloom-1.jpg", "images/tee-gloom-2.jpg", "images/tee-gloom-3.jpg"],
+    images: ["images/tee-gloom-1.jpg", "images/tee-gloom-2.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать с лёгким нанесением чёрной краски",
@@ -124,15 +124,14 @@ const PRODUCTS = [
   {
     id: 'tee-musical-decade-black',
     name: "музыкальная декада",
-    type: "Футболка",
-    cat: "tops",
+    type: "Зип-худи",
+    cat: "zip-hoodies",
     price: 3555,
     color: "черный",
     images: [
       "images/tee-musical-black-1.jpg",
       "images/tee-musical-black-2.jpg",
-      "images/tee-musical-black-3.jpg",
-      "images/tee-musical-black-4.jpg"
+      "images/tee-musical-black-3.jpg"
     ],
     desc: [
       "Легендарная тишка, которая есть у рэп-исполнителя elyaplugg!",
@@ -145,14 +144,13 @@ const PRODUCTS = [
   {
     id: 'tee-musical-decade-grey',
     name: "музыкальная декада",
-    type: "Футболка",
-    cat: "tops",
+    type: "Зип-худи",
+    cat: "zip-hoodies",
     price: 3555,
     color: "серый",
     images: [
       "images/tee-musical-grey-1.jpg",
-      "images/tee-musical-grey-2.jpg",
-      "images/tee-musical-grey-3.jpg"
+      "images/tee-musical-grey-2.jpg"
     ],
     desc: [
       "100% хлопок, кроп фит",
@@ -164,11 +162,11 @@ const PRODUCTS = [
   {
     id: 'tee-smileV2',
     name: "Улыбнись! V2",
-    type: "Футболка",
-    cat: "tops",
+    type: "Зип-худи",
+    cat: "zip-hoodies",
     price: 3555,
     color: "черный",
-    images: ["images/smile-v2-1.jpg", "images/smile-v2-2.jpg", "images/smile-v2-3.jpg"],
+    images: ["images/smile-v2-1.jpg", "images/smile-v2-2.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "Зип-молния с 2 бегунками",
@@ -179,11 +177,11 @@ const PRODUCTS = [
   {
     id: 'tee-smile',
     name: "Улыбнись!",
-    type: "Футболка",
-    cat: "tops",
+    type: "Зип-худи",
+    cat: "zip-hoodies",
     price: 3555,
     color: "серый",
-    images: ["images/tee-smile-grey-1.jpg", "images/tee-smile-grey-2.jpg", "images/tee-smile-grey-3.jpg"],
+    images: ["images/tee-smile-grey-1.jpg", "images/tee-smile-grey-2.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "Зип-молния с 2 бегунками",
@@ -203,7 +201,6 @@ const PRODUCTS = [
     images: [
       "images/tee-musical-grey-1.jpg",
       "images/tee-musical-grey-2.jpg",
-      "images/tee-musical-grey-3.jpg"
     ],
     desc: [
       "100% хлопок, кроп фит",
@@ -264,7 +261,7 @@ const PRODUCTS = [
     cat: "zip-hoodies",
     price: 3444,
     color: "серый",
-    images: ["images/zip-smiles-1.jpg", "images/zip-smiles-2.jpg", "images/zip-smiles-3.jpg"],
+    images: ["images/zip-smiles-1.jpg", "images/zip-smiles-2.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать со смайликами и надписью «qust snert» — каст балдёж",
@@ -278,7 +275,7 @@ const PRODUCTS = [
     cat: "zip-hoodies",
     price: 3444,
     color: "черный",
-    images: ["images/smile-v2-1.jpg", "images/smile-v2-2.jpg", "images/smile-v2-3.jpg"],
+    images: ["images/smile-v2-1.jpg", "images/smile-v2-2.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать с надписью «Улыбнись!»",
@@ -292,7 +289,7 @@ const PRODUCTS = [
     cat: "zip-hoodies",
     price: 3444,
     color: "серый",
-    images: ["images/tee-smile-grey-1.jpg", "images/tee-smile-grey-2.jpg", "images/tee-smile-grey-3.jpg"],
+    images: ["images/tee-smile-grey-1.jpg", "images/tee-smile-grey-2.jpg"],
     desc: [
       "100% хлопок, кроп фит",
       "DTF печать с надписью «Улыбнись!»",
@@ -328,7 +325,7 @@ const PRODUCTS = [
     cat: "shirts",
     price: 4555,
     color: "белый",
-    images: ["images/shirt-basis-1.jpg", "images/shirt-basis-2.jpg", "images/shirt-basis-3.jpg"],
+    images: ["images/shirt-basis-1.jpg", "images/shirt-basis-2.jpg"],
     desc: [
       "Ткань «тиси», кроп фит",
       "На пуговицах, слегка расклешённый рукав",
@@ -345,7 +342,7 @@ const PRODUCTS = [
     images: [
       "images/shirt-sleeping-beauty-1.jpg",
       "images/shirt-sleeping-beauty-2.jpg",
-      "images/shirt-sleeping-beauty-3.jpg"
+
     ],
     desc: [
       "Ткань «тиси», кроп фит",
@@ -364,7 +361,6 @@ const PRODUCTS = [
     images: [
       "images/shirt-wayout-v2-1.jpg",
       "images/shirt-wayout-v2-2.jpg",
-      "images/shirt-wayout-v2-3.jpg"
     ],
     desc: [
       "Ткань «тиси», кроп фит",
@@ -382,7 +378,6 @@ const PRODUCTS = [
     images: [
       "images/shirt-wayout-1.jpg",
       "images/shirt-wayout-2.jpg",
-      "images/shirt-wayout-3.jpg"
     ],
     desc: [
       "Ткань «тиси», кроп фит",

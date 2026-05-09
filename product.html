@@ -72,6 +72,13 @@
 
   </main>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lbClose" aria-label="Close">&#x2715;</button>
+    <img class="lightbox__img" id="lbImg" src="" alt="" style="cursor: zoom-in; transition: transform 0.3s ease;">
+  </div>
+  <div class="lightbox__backdrop" id="lbBackdrop"></div>
+
   <footer>
     <div class="footer__top">
       <div class="footer__wordmark">qust</div>
@@ -137,12 +144,17 @@
       const btnPrev    = document.getElementById('carPrev');
       const btnNext    = document.getElementById('carNext');
 
-      const imgs = p.images;
+      // Фильтруем массив, чтобы убрать пустые строки или undefined (из-за лишних запятых в products.js)
+      const imgs = [...p.images].filter(src => src && src.trim() !== '');
+      
+      // Добавляем спец. картинку, если это не перчатки и не футболка
+      if (p.cat !== 'tops' && p.cat !== 'gloves') {
+        imgs.push('krome_rubashok_perchatok.jpg');
+      }
+
       let current = 0;
 
-      function showImage(idx) {
-        current = (idx + imgs.length) % imgs.length;
-
+      function showImage(idx, immediate = false) {
         if (imgs.length === 0) {
           mainImg.style.display    = 'none';
           placeholder.style.display = 'block';
@@ -152,13 +164,19 @@
           return;
         }
 
+        current = (idx + imgs.length) % imgs.length;
         mainImg.style.display     = 'block';
         placeholder.style.display = 'none';
 
-        gsap.to(mainImg, { opacity: 0, duration: 0.15, onComplete: () => {
+        if (immediate) {
           mainImg.src = imgs[current];
-          gsap.to(mainImg, { opacity: 1, duration: 0.25 });
-        }});
+          mainImg.style.opacity = 1;
+        } else {
+          gsap.to(mainImg, { opacity: 0, duration: 0.15, onComplete: () => {
+            mainImg.src = imgs[current];
+            gsap.to(mainImg, { opacity: 1, duration: 0.25 });
+          }});
+        }
 
         counter.textContent = (current + 1) + ' / ' + imgs.length;
         counter.style.display = imgs.length > 1 ? 'block' : 'none';
@@ -171,6 +189,57 @@
           t.classList.toggle('active', i === current);
         });
       }
+
+      // ── ZOOM & LIGHTBOX LOGIC ───────────────────────────────────
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const mainContainer = document.getElementById('carouselMain');
+
+      if (!isTouch) {
+        // Десктопный зум (mouse follow)
+        mainContainer.addEventListener('mousemove', (e) => {
+          const rect = mainContainer.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          mainImg.style.transformOrigin = `${x}% ${y}%`;
+          mainImg.style.transform = 'scale(2)';
+        });
+
+        mainContainer.addEventListener('mouseleave', () => {
+          mainImg.style.transform = 'scale(1)';
+          mainImg.style.transformOrigin = 'center';
+        });
+      }
+
+      // Открытие лайтбокса при клике (и на десктопе, и на мобиле)
+      const lb        = document.getElementById('lightbox');
+      const lbImg     = document.getElementById('lbImg');
+      const lbClose   = document.getElementById('lbClose');
+      const lbBackdrop = document.getElementById('lbBackdrop');
+
+      mainImg.addEventListener('click', () => {
+        lbImg.src = mainImg.src;
+        lbImg.style.transform = 'scale(1)'; // Сброс зума при открытии
+        lb.classList.add('open');
+        lbBackdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+
+      function closeLb() {
+        lb.classList.remove('open');
+        lbBackdrop.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      lbClose.addEventListener('click', closeLb);
+      lbBackdrop.addEventListener('click', closeLb);
+      
+      // Дополнительный зум внутри лайтбокса при клике по фото
+      lbImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isZoomed = lbImg.style.transform === 'scale(2)';
+        lbImg.style.transform = isZoomed ? 'scale(1)' : 'scale(2)';
+        lbImg.style.cursor = isZoomed ? 'zoom-in' : 'zoom-out';
+      });
 
       // Build thumbnails
       if (imgs.length > 1) {
@@ -194,7 +263,7 @@
         if (Math.abs(dx) > 40) showImage(current + (dx < 0 ? 1 : -1));
       });
 
-      showImage(0);
+      showImage(0, true);
 
       // entrance animation
       gsap.from('.prod-gallery', { x: -40, opacity: 0, duration: 0.7, ease: 'power2.out' });

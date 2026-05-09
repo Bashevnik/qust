@@ -489,14 +489,9 @@ img {
   position: relative;
   overflow: hidden;
   aspect-ratio: 2 / 3;
-  background: #fdfaf9;
+  background: #ffffff;
   /* Cleaner premium background */
-  padding: 24px;
-}
-
-.card:nth-child(n) .card__media {
-  background: #fdfaf9;
-  /* Uniform minimal background */
+  padding: 32px;
 }
 
 .card__img {
@@ -2349,17 +2344,21 @@ a.card {
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
-  background: linear-gradient(180deg, #fdfafa 0%, #f9f4f3 100%);
+  background: #ffffff;
   overflow: hidden;
   border-radius: 2px;
+  padding: 4rem; /* Reduced photo size by adding padding */
 }
 
 .carousel__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain; /* Changed from cover to contain */
+  object-position: center;
   display: block;
+  transition: transform 0.1s ease-out; /* Smoother for mouse follow */
+  cursor: zoom-in;
+  transform-origin: center;
 }
 
 .carousel__placeholder {
