@@ -558,9 +558,10 @@ img {
 
 .card__price {
   font-family: var(--font-body);
-  font-size: .52rem;
-  letter-spacing: .2em;
-  color: rgba(255, 255, 255, .45);
+  font-size: .9rem; /* Increased from .75rem */
+  font-weight: 400;
+  letter-spacing: .08em;
+  color: rgba(255, 255, 255, .9);
   text-transform: uppercase;
   flex-shrink: 0;
   padding-left: 10px;
@@ -2158,7 +2159,7 @@ footer {
 
   .featured,
   .cat-wrap {
-    padding: 0 20px;
+    padding: 0 12px; /* Reduced from 20px to make images wider */
   }
 
   .featured__grid {
@@ -2185,7 +2186,7 @@ footer {
 
   .cat-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 8px; /* Reduced from 12px */
   }
 
   .archive-header {
@@ -2484,7 +2485,7 @@ a.card {
 }
 
 .prod-info__price {
-  font-size: 1.6rem;
+  font-size: 2.2rem; /* Increased from 1.6rem */
   font-family: var(--font-head);
   color: var(--rose);
   margin-bottom: 1.75rem;
@@ -2514,9 +2515,9 @@ a.card {
 }
 
 .prod-info__desc li {
-  font-size: .9rem;
+  font-size: 1.05rem; /* Increased from .9rem */
   color: var(--ink-mid);
-  line-height: 1.5;
+  line-height: 1.6;
   padding-left: 1.1rem;
   position: relative;
 }

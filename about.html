@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>qust — О бренде</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body data-page="about">
 
   <div class="grain"></div>
-  <div class="cursor"      id="cursor"></div>
+  <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- ── NAV ──────────────────────────────────────────────── -->
@@ -27,19 +29,21 @@
     <!-- ── HERO CAROUSEL ─────────────────────────────────── -->
     <section class="ac-hero">
       <div class="ac-hero__reel" id="acReel">
-        <img src="images/shirt-wayout-1.jpg"         alt="qust" class="ac-hero__img">
-        <img src="images/hoodie-tangled-1.jpg"        alt="qust" class="ac-hero__img">
-        <img src="images/tee-smile-grey-1.jpg"        alt="qust" class="ac-hero__img">
-        <img src="images/tee-musical-black-1.jpg"     alt="qust" class="ac-hero__img">
-        <img src="images/shirt-basis-1.jpg"           alt="qust" class="ac-hero__img">
-        <img src="images/tee-gloom-1.jpg"             alt="qust" class="ac-hero__img">
-        <img src="images/zip-smiles-1.jpg"            alt="qust" class="ac-hero__img">
-        <img src="images/shirt-sleeping-beauty-1.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-18-58.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-08.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-11.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-13.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-16.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-18.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-20.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-22.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-24.jpg" alt="qust" class="ac-hero__img">
+        <img src="about_images_background/photo_2026-05-08_17-19-27.jpg" alt="qust" class="ac-hero__img">
       </div>
       <div class="ac-hero__veil"></div>
       <div class="ac-hero__center">
         <h1 class="ac-hero__wordmark">qust</h1>
-        <p class="ac-hero__sub">Moscow · SS 2025</p>
+        <p class="ac-hero__sub">Perm · SS 2026</p>
       </div>
       <div class="ac-hero__scroll-hint">scroll</div>
     </section>
@@ -130,14 +134,28 @@
               которую ты носишь<br>
               <em>каждый день."</em>
             </p>
-            <cite class="goal-quote__cite">qust — манифест, SS 2025</cite>
+            <cite class="goal-quote__cite">qust — манифест, SS 2026</cite>
           </blockquote>
         </div>
 
       </div>
     </section>
 
-    <div class="sp-xl"></div>
+    <!-- ── MARQUEE ───────────────────────────────────────── -->
+    <div class="marquee">
+      <div class="marquee__track">
+        <span class="marquee__item">тишина<span class="dot">·</span></span>
+        <span class="marquee__item">давит громче шума<span class="dot">·</span></span>
+        <span class="marquee__item">qust<span class="dot">·</span></span>
+        <span class="marquee__item">форма<span class="dot">·</span></span>
+        <span class="marquee__item">не правила<span class="dot">·</span></span>
+        <span class="marquee__item">тишина<span class="dot">·</span></span>
+        <span class="marquee__item">давит громче шума<span class="dot">·</span></span>
+        <span class="marquee__item">qust<span class="dot">·</span></span>
+        <span class="marquee__item">форма<span class="dot">·</span></span>
+        <span class="marquee__item">не правила<span class="dot">·</span></span>
+      </div>
+    </div>
 
   </main>
 
@@ -156,17 +174,15 @@
         <div>
           <p class="footer__col-title">Контакт</p>
           <ul class="footer__col-links">
-            <li><a href="mailto:qust@mail.ru">qust@mail.ru</a></li>
-            <li><a href="https://t.me/qusteverywhere" target="_blank">Telegram Channel</a></li>
-            <li><a href="https://t.me/qustchill" target="_blank">Telegram Support</a></li>
-            <li><a href="#">Instagram</a></li>
+            <li><a href="mailto:qustchil@gmail.com">qustchil@gmail.com</a></li>
+            <li><a href="https://t.me/inspectorqust" target="_blank">Telegram</a></li>
           </ul>
         </div>
       </nav>
     </div>
     <div class="footer__bottom">
-      <span class="footer__copy">&copy; 2025 qust Studio</span>
-      <span class="footer__city">Moscow, Russia</span>
+      <span class="footer__copy">&copy; 2023-2026 qust Studio</span>
+      <span class="footer__city">Perm, Russia</span>
     </div>
   </footer>
 
@@ -174,55 +190,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
   <script>
-  /* ── Hero Carousel ───────────────────────────────────────── */
-  (function () {
-    const reel = document.getElementById('acReel');
-    if (!reel) return;
+    /* ── Hero Carousel ───────────────────────────────────────── */
+    (function () {
+      const reel = document.getElementById('acReel');
+      if (!reel) return;
 
-    const origImgs = Array.from(reel.querySelectorAll('.ac-hero__img'));
-    const n = origImgs.length; // 8
+      const origImgs = Array.from(reel.querySelectorAll('.ac-hero__img'));
+      const n = origImgs.length; // 8
 
-    /* Clone first 4 so the last visible block never shows a gap */
-    for (let i = 0; i < 4; i++) {
-      reel.appendChild(origImgs[i % n].cloneNode(true));
-    }
-
-    let step   = 0;
-    let locked = false;
-
-    function slide() {
-      if (locked) return;
-      step++;
-
-      const imgW = reel.firstElementChild.offsetWidth;
-      reel.style.transition = 'transform 0.92s cubic-bezier(0.16,1,0.3,1)';
-      reel.style.transform  = `translateX(-${step * imgW}px)`;
-
-      /* After showing all originals, reset silently to position 0 */
-      if (step >= n) {
-        locked = true;
-        setTimeout(function () {
-          reel.style.transition = 'none';
-          step = 0;
-          reel.style.transform  = 'translateX(0)';
-          /* Two rAFs ensure paint happens before unlocking */
-          requestAnimationFrame(function () {
-            requestAnimationFrame(function () { locked = false; });
-          });
-        }, 940);
+      /* Clone first 4 so the last visible block never shows a gap */
+      for (let i = 0; i < 4; i++) {
+        reel.appendChild(origImgs[i % n].cloneNode(true));
       }
-    }
 
-    setInterval(slide, 2500);
+      let step = 0;
+      let locked = false;
 
-    /* Keep pixel offset accurate on resize */
-    window.addEventListener('resize', function () {
-      const imgW = reel.firstElementChild.offsetWidth;
-      reel.style.transition = 'none';
-      reel.style.transform  = `translateX(-${step * imgW}px)`;
-    });
-  })();
+      function slide() {
+        if (locked) return;
+        step++;
+
+        const imgW = reel.firstElementChild.offsetWidth;
+        reel.style.transition = 'transform 0.92s cubic-bezier(0.16,1,0.3,1)';
+        reel.style.transform = `translateX(-${step * imgW}px)`;
+
+        /* After showing all originals, reset silently to position 0 */
+        if (step >= n) {
+          locked = true;
+          setTimeout(function () {
+            reel.style.transition = 'none';
+            step = 0;
+            reel.style.transform = 'translateX(0)';
+            /* Two rAFs ensure paint happens before unlocking */
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () { locked = false; });
+            });
+          }, 940);
+        }
+      }
+
+      setInterval(slide, 2500);
+
+      /* Keep pixel offset accurate on resize */
+      window.addEventListener('resize', function () {
+        const imgW = reel.firstElementChild.offsetWidth;
+        reel.style.transition = 'none';
+        reel.style.transform = `translateX(-${step * imgW}px)`;
+      });
+    })();
   </script>
 
 </body>
+
 </html>
