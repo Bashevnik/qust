@@ -110,7 +110,7 @@
           <p class="footer__col-title">Контакт</p>
           <ul class="footer__col-links">
             <li><a href="mailto:qustchil@gmail.com">qustchil@gmail.com</a></li>
-            <li><a href="https://t.me/inspectorqust" target="_blank">Telegram</a></li>
+            <li><a href="https://t.me/qusteverywhere" target="_blank">Telegram</a></li>
           </ul>
         </div>
       </nav>
@@ -166,10 +166,17 @@
       return 'вещей';
     }
 
+    const legacyColors = {
+      'черный': 'С‡РµСЂРЅС‹Р№',
+      'серый': 'СЃРµСЂС‹Р№',
+      'белый': 'Р±РµР»С‹Р№',
+      'разноцветный': 'СЂР°Р·РЅРѕС†РІРµС‚РЅС‹Р№'
+    };
+
     function matches(p) {
       return p.images.length > 0
           && (state.cat === 'all' || p.cat === state.cat)
-          && (state.colors.size === 0 || state.colors.has(p.color))
+          && (state.colors.size === 0 || state.colors.has(p.color) || state.colors.has(legacyColors[p.color]))
           && p.price >= state.priceMin && p.price <= state.priceMax;
     }
 

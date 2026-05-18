@@ -70,6 +70,11 @@ img {
 
 .page {
   opacity: 0;
+  animation: pageFallback 0s 2.5s forwards;
+}
+
+@keyframes pageFallback {
+  to { opacity: 1; }
 }
 
 /* ── GRAIN ──────────────────────────────────────────────────── */
@@ -558,7 +563,8 @@ img {
 
 .card__price {
   font-family: var(--font-body);
-  font-size: .9rem; /* Increased from .75rem */
+  font-size: .9rem;
+  /* Increased from .75rem */
   font-weight: 400;
   letter-spacing: .08em;
   color: rgba(255, 255, 255, .9);
@@ -862,20 +868,36 @@ footer {
 }
 
 .footer__wordmark {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-brand);
   font-size: clamp(4rem, 10vw, 9rem);
   font-weight: 400;
   letter-spacing: .02em;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  user-select: none;
+  line-height: 1.45;
+  overflow: visible;
+  padding: .24em .14em .56em;
+  margin: -.24em -.14em -.56em;
+}
+
+.footer__wordmark::before {
+  content: "qust";
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  padding: .24em .14em .56em;
+  transform: translate(-.14em, -.24em);
   background: linear-gradient(135deg, #F4BFB1 0%, #e87aa0 50%, #A42A81 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 1;
-  user-select: none;
-  line-height: 1.4;
   overflow: visible;
-  display: block;
-  padding-bottom: .1em;
+  white-space: nowrap;
 }
 
 .footer__nav {
@@ -1523,19 +1545,35 @@ footer {
 }
 
 .ac-hero__wordmark {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-brand);
   font-size: clamp(7rem, 22vw, 22rem);
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.45;
   letter-spacing: .02em;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 32px rgba(164, 42, 129, .55));
+  overflow: visible;
+  padding: .24em .14em .56em;
+  margin: -.24em -.14em -.56em;
+}
+
+.ac-hero__wordmark::before {
+  content: "qust";
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  padding: .24em .14em .56em;
+  transform: translate(-.14em, -.24em);
   background: linear-gradient(135deg, #F4BFB1 0%, #e87aa0 50%, #A42A81 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 4px 32px rgba(164, 42, 129, .55));
   overflow: visible;
-  display: block;
-  padding-bottom: .05em;
+  white-space: nowrap;
 }
 
 .ac-hero__sub {
@@ -2159,7 +2197,8 @@ footer {
 
   .featured,
   .cat-wrap {
-    padding: 0 12px; /* Reduced from 20px to make images wider */
+    padding: 0 12px;
+    /* Reduced from 20px to make images wider */
   }
 
   .featured__grid {
@@ -2186,7 +2225,8 @@ footer {
 
   .cat-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 8px; /* Reduced from 12px */
+    gap: 8px;
+    /* Reduced from 12px */
   }
 
   .archive-header {
@@ -2348,16 +2388,19 @@ a.card {
   background: #ffffff;
   overflow: hidden;
   border-radius: 2px;
-  padding: 4rem; /* Reduced photo size by adding padding */
+  padding: 4rem;
+  /* Reduced photo size by adding padding */
 }
 
 .carousel__img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Changed from cover to contain */
+  object-fit: contain;
+  /* Changed from cover to contain */
   object-position: center;
   display: block;
-  transition: transform 0.1s ease-out; /* Smoother for mouse follow */
+  transition: transform 0.1s ease-out;
+  /* Smoother for mouse follow */
   cursor: zoom-in;
   transform-origin: center;
 }
@@ -2485,7 +2528,8 @@ a.card {
 }
 
 .prod-info__price {
-  font-size: 2.2rem; /* Increased from 1.6rem */
+  font-size: 2.2rem;
+  /* Increased from 1.6rem */
   font-family: var(--font-head);
   color: var(--rose);
   margin-bottom: 1.75rem;
@@ -2515,7 +2559,8 @@ a.card {
 }
 
 .prod-info__desc li {
-  font-size: 1.05rem; /* Increased from .9rem */
+  font-size: 1.05rem;
+  /* Increased from .9rem */
   color: var(--ink-mid);
   line-height: 1.6;
   padding-left: 1.1rem;
@@ -2568,6 +2613,21 @@ a.card {
 }
 
 @media (max-width: 600px) {
+  .carousel__main {
+    padding: 0;
+    max-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
   .filter-row__opts--price {
     flex-wrap: nowrap;
   }

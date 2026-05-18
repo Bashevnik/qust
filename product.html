@@ -60,7 +60,7 @@
         <ul class="prod-info__desc" id="prodDesc"></ul>
 
         <div class="prod-info__actions">
-          <a href="https://t.me/inspectorqust" target="_blank" class="btn-ghost prod-info__order">
+          <a href="https://t.me/qusteverywhere" target="_blank" class="btn-ghost prod-info__order">
             Заказать в Telegram
           </a>
         </div>
@@ -94,7 +94,7 @@
           <p class="footer__col-title">Контакт</p>
           <ul class="footer__col-links">
             <li><a href="mailto:qustchil@gmail.com">qustchil@gmail.com</a></li>
-            <li><a href="https://t.me/inspectorqust" target="_blank">Telegram</a></li>
+            <li><a href="https://t.me/qusteverywhere" target="_blank">Telegram</a></li>
           </ul>
         </div>
       </nav>
@@ -146,11 +146,11 @@
       // Фильтруем массив, чтобы убрать пустые строки или undefined (из-за лишних запятых в products.js)
       const imgs = [...p.images].filter(src => src && src.trim() !== '');
       
-      // Добавляем спец. картинку, если это не перчатки и не футболка
+      // Добавляем общее фото в галерею товара.
       if (p.cat === 'shirts') {
-        imgs.push('krubashkam.jpg');
-      } else if (p.cat !== 'tops' && p.cat !== 'gloves') {
-        imgs.push('krome_rubashok_perchatok.jpg');
+        imgs.push('images/kovsemrubashkam.jpg');
+      } else if (p.cat !== 'gloves') {
+        imgs.push('images/kromerubashek.jpg');
       }
 
       let current = 0;
