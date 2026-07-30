@@ -10,8 +10,13 @@ export async function appendToAlbum(groupId, item) {
 }
 
 export async function tryAcquireLock(groupId) {
-  const ok = await kv.set(`lock:${groupId}`, '1', { nx: true, ex: 55 });
-  return ok === 'OK' || ok === true;
+  // INCR is atomic regardless of whether the key already existed — whoever
+  // gets back 1 is unambiguously the first (and only) leader for this group.
+  const key = `lock:${groupId}`;
+  const n = await kv.incr(key);
+  console.log(`lock incr for ${groupId} -> ${n}`);
+  if (n === 1) await kv.expire(key, 55);
+  return n === 1;
 }
 
 export async function readAlbum(groupId) {
