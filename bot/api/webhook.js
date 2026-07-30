@@ -33,22 +33,23 @@ export default async function handler(req, res) {
   }
 
   try {
-    const groupId = msg.media_group_id || `single-${msg.message_id}`;
+    // Telegram не всегда присылает media_group_id для пересланных альбомов —
+    // на этот случай общий ключ на чат, чтобы всё равно собрать все фото вместе.
+    const groupId = msg.media_group_id || `chat-${msg.chat.id}`;
     const photo = msg.photo[msg.photo.length - 1]; // highest resolution
     console.log(`photo received, groupId=${groupId}, hasCaption=${!!msg.caption}`);
     await appendToAlbum(groupId, { file_id: photo.file_id, caption: msg.caption || '' });
 
     // Только один апдейт на альбом должен всё обработать — остальные просто добавляют своё фото выше.
-    const isLeader = msg.media_group_id ? await tryAcquireLock(groupId) : true;
+    const isLeader = await tryAcquireLock(groupId);
     if (!isLeader) {
       console.log(`not leader for ${groupId}, exiting`);
       res.status(200).send('ok');
       return;
     }
 
-    if (msg.media_group_id) {
-      await new Promise(r => setTimeout(r, 1500));
-    }
+    // ждём — вдруг ещё не все фото из этой пересылки долетели
+    await new Promise(r => setTimeout(r, 2000));
 
     const items = await readAlbum(groupId);
     await clearAlbum(groupId);

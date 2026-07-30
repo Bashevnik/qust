@@ -37,13 +37,25 @@ export async function putFile(path, content, message, sha) {
   });
 }
 
+async function getShaIfExists(path) {
+  const res = await fetch(`${API}/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(path)}?ref=${BRANCH}`, {
+    headers: { Authorization: `Bearer ${TOKEN}`, Accept: 'application/vnd.github+json' },
+  });
+  if (res.status === 404) return undefined;
+  if (!res.ok) throw new Error(`GitHub API get-sha ${path} failed: ${res.status} ${await res.text()}`);
+  return (await res.json()).sha;
+}
+
 export async function uploadImage(path, buffer, message) {
+  // upsert: GitHub требует sha существующего файла, если он уже есть — иначе 422
+  const sha = await getShaIfExists(path);
   await ghFetch(`/repos/${OWNER}/${REPO}/contents/${encodeURIComponent(path)}`, {
     method: 'PUT',
     body: JSON.stringify({
       message,
       content: buffer.toString('base64'),
       branch: BRANCH,
+      ...(sha ? { sha } : {}),
     }),
   });
 }
