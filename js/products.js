@@ -2,6 +2,22 @@ const PRODUCTS = [
   // ── New Drop: "starfall 2026" ──────────────────────────────
   // добавляй новые товары дропа сюда, поставь newDrop: true
   {
+    id: 'tops-nothing-superfluous',
+    name: 'nothing superfluous',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 3535,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/nothing-superfluous.jpg'],
+    desc: [
+      'Двойной принт  "qust everywhere"  на спине',
+      'DTF печать',
+      'Кроп фит',
+      '95% хлопок, 5% эластан'
+    ]
+  },
+  {
     id: 'tops-lightness-v3',
     name: 'lightness',
     type: 'Футболка',
