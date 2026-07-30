@@ -1,3 +1,4 @@
+import { waitUntil } from '@vercel/functions';
 import { appendToAlbum, tryAcquireLock, readAlbum, clearAlbum } from '../lib/store.js';
 import { sendMessage, downloadFile } from '../lib/telegram.js';
 import { parseProductCaption } from '../lib/parse.js';
@@ -36,6 +37,12 @@ export default async function handler(req, res) {
     return;
   }
 
+  // На Fluid Compute платформа замораживает функцию сразу после отправки
+  // ответа — без waitUntil весь код ниже просто не успел бы выполниться.
+  waitUntil(processPhoto(update, msg));
+}
+
+async function processPhoto(update, msg) {
   try {
     // Telegram не всегда присылает media_group_id для пересланных альбомов —
     // на этот случай общий ключ на чат, чтобы всё равно собрать все фото вместе.
