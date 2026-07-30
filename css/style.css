@@ -488,20 +488,22 @@ img {
   position: relative;
   overflow: hidden;
   cursor: none;
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
 }
 
 .card__media {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1 / 1;
   background: #ffffff;
 }
 
 .card__img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transform: scale(1);
   transition: transform .85s var(--ease-out);
 }
@@ -605,17 +607,10 @@ img {
   line-height: .92;
 }
 
-/* Masonry: cards keep each photo's natural ratio (never cropped, always
-   full-bleed) and pack tightly instead of leaving ragged gaps. */
 .featured__grid {
-  column-count: 3;
-  column-gap: 14px;
-}
-
-.featured__grid > .card {
-  display: block;
-  width: 100%;
-  margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 
 /* ── ARROW LINK ─────────────────────────────────────────────── */
@@ -1363,14 +1358,9 @@ footer {
 }
 
 .cat-grid {
-  column-count: 3;
-  column-gap: 16px;
-}
-
-.cat-grid > .card {
-  display: block;
-  width: 100%;
-  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2161,7 +2151,7 @@ footer {
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .featured__grid {
-    column-count: 2;
+    grid-template-columns: 1fr 1fr;
   }
 
   .featured__grid .card:last-child {
@@ -2222,12 +2212,8 @@ footer {
   }
 
   .featured__grid {
-    column-count: 2;
-    column-gap: 8px;
-  }
-
-  .featured__grid > .card {
-    margin-bottom: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
   .featured__grid .card:last-child {
@@ -2249,12 +2235,8 @@ footer {
   }
 
   .cat-grid {
-    column-count: 2;
-    column-gap: 8px;
-  }
-
-  .cat-grid > .card {
-    margin-bottom: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
   .archive-header {
@@ -2658,12 +2640,8 @@ a.card {
   }
 
   .cat-grid {
-    column-count: 2;
-    column-gap: 10px;
-  }
-
-  .cat-grid > .card {
-    margin-bottom: 10px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
   .carousel__thumb {
