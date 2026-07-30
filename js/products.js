@@ -2,6 +2,106 @@ const PRODUCTS = [
   // ── New Drop: "starfall 2026" ──────────────────────────────
   // добавляй новые товары дропа сюда, поставь newDrop: true
   {
+    id: 'tops-lightness',
+    name: 'lightness',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 4044,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/lightness.jpg', 'images/lightness2.jpg', 'images/lightness3.jpg', 'images/lightness4.jpg', 'images/lightness5.jpg', 'images/lightness6.jpg'],
+    desc: [
+      'Съёмный рукав на заклёпках',
+      'Красивейшая розовая молния',
+      'Серебристый, металлический бегунок в форме 2-ух звёзд',
+      'Кроп фит',
+      '95% хлопок, 5% эластан'
+    ]
+  },
+  {
+    id: 'tops-nothing-superfluous',
+    name: 'nothing superfluous',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 3535,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/nothing-superfluous.jpg', 'images/nothing-superfluous2.jpg', 'images/nothing-superfluous3.jpg', 'images/nothing-superfluous4.jpg', 'images/nothing-superfluous5.jpg'],
+    desc: [
+      'Двойной принт "qust everywhere" на спине',
+      'DTF печать',
+      'Кроп фит',
+      '95% хлопок, 5% эластан'
+    ]
+  },
+  {
+    id: 'tops-glamorous',
+    name: 'glamorous',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 2444,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/glamorous.jpg', 'images/glamorous2.jpg', 'images/glamorous3.jpg', 'images/glamorous4.jpg'],
+    desc: [
+      'Розовая молния над грудью в горизонтальном виде',
+      'Металлический бегунок серебристого цвета в форме 2-ух звёзд',
+      'Ослепительно-яркий цвет: фуксия',
+      'Кроп фит',
+      '100% хлопок'
+    ]
+  },
+  {
+    id: 'tops-royally',
+    name: 'royally',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 2444,
+    color: 'черный',
+    newDrop: true,
+    images: ['images/royally.jpg', 'images/royally2.jpg', 'images/royally3.jpg', 'images/royally4.jpg'],
+    desc: [
+      'Металлическая молния серебристого цвета над грудью в горизонтальном виде',
+      'Металлический бегунок чёрного цвета в форме 2-ух звёзд',
+      'A pure, deep black color',
+      'Кроп фит',
+      '100% хлопок'
+    ]
+  },
+  {
+    id: 'zip-hoodies-refinement',
+    name: 'refinement',
+    type: 'Зип-худи',
+    cat: 'zip-hoodies',
+    price: 3999,
+    color: 'черный',
+    newDrop: true,
+    images: ['images/refinement.jpg', 'images/refinement2.jpg', 'images/refinement3.jpg', 'images/refinement4.jpg'],
+    desc: [
+      'Металлическая молния серебристого цвета',
+      'Металлический бегунок чёрного цвета в форме 2-ух звёзд',
+      'Лучшая база',
+      'Кроп фит',
+      '100% хлопок'
+    ]
+  },
+  {
+    id: 'accessories-bracelets-67',
+    name: '67',
+    type: 'Браслет',
+    cat: 'accessories',
+    price: 676,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/bracelets-67.jpg', 'images/bracelets-672.jpg', 'images/bracelets-673.jpg', 'images/bracelets-674.jpg', 'images/bracelets-675.jpg'],
+    desc: [
+      'Бисерные браслетики со звёздочками, сердечками и названием бренда',
+      '2 расцветки: чёрно-белая, розово-белая',
+      'Находятся в свободном положении, еле ощущаются, не жмут, пойдут на любую руку',
+      'На каждый цвет по 10 браслетов'
+    ]
+  },
+  {
     id: 'shirt-way-out',
     name: 'way-out',
     type: 'Зип-рубашка',
