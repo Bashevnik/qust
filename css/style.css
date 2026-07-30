@@ -1974,7 +1974,16 @@ footer {
   inset: 0;
   width: 100%;
   height: 100%;
+}
+
+.drop-hero__img--bg {
   object-fit: cover;
+  filter: blur(60px) brightness(.55) saturate(1.15);
+  transform: scale(1.15);
+}
+
+.drop-hero__img--fg {
+  object-fit: contain;
 }
 
 .drop-hero__overlay {
@@ -2008,8 +2017,12 @@ footer {
   font-weight: 400;
   font-style: italic;
   line-height: .85;
-  color: var(--white);
   letter-spacing: -.035em;
+  background: linear-gradient(135deg, #ffffff 0%, #f4bfb1 45%, #e87aa0 75%, #a42a81 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 6px 44px rgba(164, 42, 129, .55));
 }
 
 .drop-hero__date {
