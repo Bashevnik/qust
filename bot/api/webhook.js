@@ -48,8 +48,10 @@ export default async function handler(req, res) {
       return;
     }
 
-    // ждём — вдруг ещё не все фото из этой пересылки долетели
-    await new Promise(r => setTimeout(r, 2000));
+    // Фото одной пересылки могут доходить растянуто по времени (не пачкой),
+    // поэтому ждём не фиксированную паузу, а "тишину" — пока не перестанут
+    // прибывать новые, с потолком по общему времени ожидания.
+    await waitForAlbumToSettle(groupId);
 
     const items = await readAlbum(groupId);
     await clearAlbum(groupId);
@@ -96,6 +98,23 @@ export default async function handler(req, res) {
       await sendMessage(msg.chat.id, `❌ Не получилось добавить товар: ${escapeHtml(err.message)}`);
     } catch (_) { /* best effort */ }
     res.status(200).send('ok');
+  }
+}
+
+async function waitForAlbumToSettle(groupId, { quietMs = 3500, maxTotalMs = 25000, pollMs = 700 } = {}) {
+  const start = Date.now();
+  let lastSize = (await readAlbum(groupId)).length;
+  let lastChangeAt = Date.now();
+
+  while (Date.now() - start < maxTotalMs) {
+    await new Promise(r => setTimeout(r, pollMs));
+    const size = (await readAlbum(groupId)).length;
+    if (size !== lastSize) {
+      console.log(`album still growing: ${lastSize} -> ${size}`);
+      lastSize = size;
+      lastChangeAt = Date.now();
+    }
+    if (Date.now() - lastChangeAt >= quietMs) break;
   }
 }
 

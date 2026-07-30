@@ -6,11 +6,11 @@ import { kv } from '@vercel/kv';
 
 export async function appendToAlbum(groupId, item) {
   await kv.rpush(`album:${groupId}`, JSON.stringify(item));
-  await kv.expire(`album:${groupId}`, 30);
+  await kv.expire(`album:${groupId}`, 60);
 }
 
 export async function tryAcquireLock(groupId) {
-  const ok = await kv.set(`lock:${groupId}`, '1', { nx: true, ex: 10 });
+  const ok = await kv.set(`lock:${groupId}`, '1', { nx: true, ex: 55 });
   return ok === 'OK' || ok === true;
 }
 
