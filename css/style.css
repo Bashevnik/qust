@@ -495,16 +495,14 @@ img {
   overflow: hidden;
   aspect-ratio: 2 / 3;
   background: #ffffff;
-  /* Cleaner premium background */
-  padding: 32px;
 }
 
 .card__img {
   position: absolute;
-  inset: 24px;
-  width: calc(100% - 48px);
-  height: calc(100% - 48px);
-  object-fit: contain;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
   transform: scale(1);
   transition: transform .85s var(--ease-out);
@@ -1960,13 +1958,13 @@ footer {
   min-height: 640px;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .drop-hero__media {
   position: absolute;
   inset: 0;
-  background: var(--grad-v);
 }
 
 .drop-hero__img {
@@ -1974,31 +1972,15 @@ footer {
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.drop-hero__img--bg {
   object-fit: cover;
-  filter: blur(60px) brightness(.55) saturate(1.15);
-  transform: scale(1.15);
-}
-
-.drop-hero__img--fg {
-  object-fit: contain;
-}
-
-.drop-hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: var(--grad-dark);
-  mix-blend-mode: multiply;
 }
 
 .drop-hero__content {
   position: relative;
   z-index: 2;
-  padding: 0 48px clamp(52px, 8vw, 96px);
+  padding: 0 48px;
   width: 100%;
+  text-align: center;
 }
 
 .drop-hero__kicker {
