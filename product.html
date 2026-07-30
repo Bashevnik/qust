@@ -16,6 +16,7 @@
     <a href="index.html" class="nav__logo">qust</a>
     <ul class="nav__links">
       <li><a href="catalog.html">Shop</a></li>
+      <li><a href="new-drop.html">New Drop</a></li>
       <li><a href="archive.html">Archive</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
@@ -60,7 +61,7 @@
         <ul class="prod-info__desc" id="prodDesc"></ul>
 
         <div class="prod-info__actions">
-          <a href="https://t.me/qusteverywhere" target="_blank" class="btn-ghost prod-info__order">
+          <a href="https://t.me/qusteverywhere" target="_blank" class="btn-ghost prod-info__order" id="prodOrder">
             Заказать в Telegram
           </a>
         </div>
@@ -127,6 +128,10 @@
       document.getElementById('prodName').textContent  = p.name;
       document.getElementById('prodPrice').textContent = p.price.toLocaleString('ru') + ' ₽';
       document.getElementById('prodColor').textContent = p.color;
+
+      if (p.newDrop) {
+        document.getElementById('prodOrder').href = 'https://t.me/inspectorqust';
+      }
 
       const descEl = document.getElementById('prodDesc');
       p.desc.forEach(line => {

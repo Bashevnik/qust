@@ -1,0 +1,10 @@
+{
+  "name": "qust-drop-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@vercel/kv": "^2.0.0"
+  }
+}

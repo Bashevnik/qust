@@ -1,0 +1,93 @@
+# qust drop bot
+
+Пересылаешь боту сообщение менеджера (фото + описание товара) — бот сам
+разбирает текст через Claude, заливает фото и добавляет товар в
+`js/products.js` (с флагом `newDrop: true`), коммитит в репозиторий на
+GitHub. Push в `main` уже настроен на автодеплой через существующий
+GitHub Action (`.github/workflows/deploy.yml`), так что товар появляется
+на сайте сам, без ручных действий.
+
+## Как это устроено
+
+1. Telegram шлёт вебхук на `/api/webhook` при каждом фото.
+2. Если фото — часть альбома (`media_group_id`), бот буферизует все фото
+   альбома в Vercel KV ~1.5 сек, пока не соберёт их все.
+3. Подпись (caption) из любого фото альбома отправляется в Claude —
+   получаем название, тип, категорию, цену, цвет и пункты описания.
+4. Фото заливаются в `images/` через GitHub Contents API, товар
+   дописывается в `js/products.js`.
+5. Тебе приходит подтверждение в чат: что добавили и под каким `id`.
+
+Если бот не нашёл описание или не смог распарсить — пришлёт ошибку в чат,
+на сайт ничего не попадёт.
+
+## Что нужно подготовить
+
+1. **Telegram-бот** — напиши `@BotFather` → `/newbot`, получишь
+   `TELEGRAM_BOT_TOKEN`.
+2. **Свой Telegram chat_id** — напиши что-нибудь `@userinfobot`, он
+   пришлёт твой numeric id → `ADMIN_CHAT_ID`. Бот будет реагировать
+   только на сообщения от этого id.
+3. **GitHub Personal Access Token** — Settings → Developer settings →
+   Fine-grained tokens → создать токен только для репозитория `qust` с
+   правом `Contents: Read and write` → `GITHUB_TOKEN`.
+4. **Anthropic API key** — с console.anthropic.com → `ANTHROPIC_API_KEY`.
+5. **Vercel KV (Upstash)** — в проекте на Vercel: Storage → Create
+   Database → Upstash Redis → Connect to Project. Он сам добавит нужные
+   `KV_*` переменные окружения, руками вводить не надо.
+
+## Переменные окружения (Vercel → Settings → Environment Variables)
+
+| Переменная            | Значение                                   |
+|------------------------|---------------------------------------------|
+| `TELEGRAM_BOT_TOKEN`   | токен от BotFather                          |
+| `ADMIN_CHAT_ID`        | твой Telegram id                            |
+| `ANTHROPIC_API_KEY`    | ключ Anthropic                              |
+| `GITHUB_TOKEN`         | fine-grained PAT с доступом к репозиторию   |
+| `GITHUB_OWNER`         | `Bashevnik`                                 |
+| `GITHUB_REPO`          | `qust`                                      |
+| `GITHUB_BRANCH`        | `main` (необязательно, это значение по умолчанию) |
+
+`KV_REST_API_URL` / `KV_REST_API_TOKEN` добавятся сами при подключении
+Upstash-интеграции.
+
+## Деплой
+
+Это отдельный Vercel-проект с корневой директорией `bot/` (сайт
+по-прежнему деплоится на beget через FTP, эта папка его не касается).
+
+```bash
+cd bot
+vercel link      # привязать/создать проект
+vercel env pull  # проверить, что переменные подтянулись (после того как заполнишь их в дашборде)
+vercel deploy --prod
+```
+
+После деплоя пропиши вебхук у Telegram (один раз):
+
+```bash
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/setWebhook?url=https://<твой-проект>.vercel.app/api/webhook"
+```
+
+Проверить, что вебхук встал:
+
+```bash
+curl "https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/getWebhookInfo"
+```
+
+## Формат сообщения от менеджера
+
+Бот ожидает то же, что обычно присылает менеджер — фото товара с
+подписью, где есть название, цена и цвет, например:
+
+```
+Striped undershirt "nothing superfluous"
+– Двойной принт "qust everywhere" на спине – DTF печать –
+Кроп фит – 95% хлопок, 5% эластан
+
+Цена: 3.535₽
+Цвет: разноцветный
+```
+
+Если это альбом из нескольких фото — подпись можно оставить на любом из
+них, бот сам найдёт.

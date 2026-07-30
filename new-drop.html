@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>qust — New Drop</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="new-drop">
+
+  <div class="grain"></div>
+  <div class="cursor"      id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav nav--light">
+    <a href="index.html" class="nav__logo">qust</a>
+    <ul class="nav__links">
+      <li><a href="catalog.html">Shop</a></li>
+      <li><a href="new-drop.html" class="active">New Drop</a></li>
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+
+    <!-- ── DROP HERO ───────────────────────────────────────── -->
+    <section class="drop-hero">
+      <div class="drop-hero__media">
+        <img src="images/new_drop_back.jpg" alt="qust starfall 2026" class="drop-hero__img">
+      </div>
+      <div class="drop-hero__overlay"></div>
+      <div class="drop-hero__content">
+        <p class="drop-hero__kicker">New Drop</p>
+        <h1 class="drop-hero__title">qust starfall 2026</h1>
+      </div>
+    </section>
+
+    <div class="sp-sm"></div>
+
+    <!-- ── GRID ─────────────────────────────────────────────── -->
+    <section class="cat-wrap">
+      <div class="cat-grid" id="dropGrid"></div>
+      <p class="cat-empty" id="dropEmpty">Дроп скоро появится здесь</p>
+    </section>
+
+    <div class="sp-xl"></div>
+
+  </main>
+
+  <footer>
+    <div class="footer__top">
+      <div class="footer__wordmark">qust</div>
+      <nav class="footer__nav">
+        <div>
+          <p class="footer__col-title">Навигация</p>
+          <ul class="footer__col-links">
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="new-drop.html">New Drop</a></li>
+            <li><a href="about.html">О бренде</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-title">Контакт</p>
+          <ul class="footer__col-links">
+            <li><a href="mailto:qustchil@gmail.com">qustchil@gmail.com</a></li>
+            <li><a href="https://t.me/qusteverywhere" target="_blank">Telegram</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">&copy; 2023-2026 qust Studio</span>
+      <span class="footer__city">Perm, Russia</span>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+    const $grid  = document.getElementById('dropGrid');
+    const $empty = document.getElementById('dropEmpty');
+
+    function fmt(n) { return n.toLocaleString('ru') + ' ₽'; }
+
+    const items = PRODUCTS.filter(p => p.newDrop && p.images.length > 0);
+    $empty.style.display = items.length ? 'none' : 'block';
+
+    items.forEach((p, i) => {
+      const a = document.createElement('a');
+      a.className = 'card cat-card-anim';
+      a.href      = 'product.html?id=' + p.id;
+      a.style.animationDelay = (i * 0.04) + 's';
+      a.innerHTML = `
+        <div class="card__media">
+          <img src="${p.images[0]}" alt="${p.name}" class="card__img" loading="lazy">
+          <div class="card__shimmer"></div>
+          <div class="card__veil"></div>
+        </div>
+        <div class="card__info">
+          <span class="card__name">${p.name}</span>
+          <span class="card__price">${fmt(p.price)}</span>
+        </div>
+        <span class="card__tag">${p.type}</span>
+      `;
+      $grid.appendChild(a);
+    });
+  })();
+  </script>
+</body>
+</html>

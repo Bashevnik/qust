@@ -57,10 +57,11 @@ window.addEventListener('DOMContentLoaded', () => {
   // reveal page
   gsap.to('.page', { opacity: 1, duration: 0.01 });
 
-  if (PAGE === 'home')    animHome();
-  if (PAGE === 'catalog') animCatalog();
-  if (PAGE === 'about')   animAbout();
-  if (PAGE === 'archive') animArchive();
+  if (PAGE === 'home')     animHome();
+  if (PAGE === 'catalog')  animCatalog();
+  if (PAGE === 'about')    animAbout();
+  if (PAGE === 'archive')  animArchive();
+  if (PAGE === 'new-drop') animNewDrop();
 });
 
 /* ── HOME ───────────────────────────────────────────────────── */
@@ -157,6 +158,21 @@ function animAbout() {
   gsap.from('.goal-quote', {
     x: 40, opacity: 0, duration: 1.0, ease: 'power3.out',
     scrollTrigger: { trigger: '.goal-section', start: 'top 82%', once: true }
+  });
+}
+
+/* ── NEW DROP ───────────────────────────────────────────────── */
+function animNewDrop() {
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+  tl.from('.nav__logo',        { opacity: 0, y: -10, duration: .8 }, .2)
+    .from('.nav__links li',    { opacity: 0, y: -8, stagger: .08, duration: .65 }, .3)
+    .from('.drop-hero__kicker',{ opacity: 0, y: 20, duration: .9 }, .4)
+    .from('.drop-hero__title', { opacity: 0, y: 64, duration: 1.15 }, .5);
+
+  gsap.from('.cat-grid .card', {
+    y: 48, opacity: 0, stagger: { amount: .55, from: 'start' }, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cat-grid', start: 'top 88%', once: true }
   });
 }
 

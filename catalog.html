@@ -16,6 +16,7 @@
     <a href="index.html" class="nav__logo">qust</a>
     <ul class="nav__links">
       <li><a href="catalog.html" class="active">Shop</a></li>
+      <li><a href="new-drop.html">New Drop</a></li>
       <li><a href="archive.html">Archive</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
@@ -42,6 +43,7 @@
   <!-- ── BOTTOM FILTER BAR ─────────────────────────────────── -->
   <div class="filter-bar">
     <div class="filter-bar__cats" id="catOpts">
+      <button class="fpill" id="newDropPill" data-newdrop="1">New Drop</button>
       <button class="fpill active" data-cat="all">Все</button>
       <button class="fpill" data-cat="gloves">Перчатки</button>
       <button class="fpill" data-cat="tops">Футболки</button>
@@ -134,6 +136,7 @@
       colors:   new Set(),
       priceMin: MIN,
       priceMax: MAX,
+      newDropOnly: false,
     };
 
     const catLabels = {
@@ -175,6 +178,7 @@
 
     function matches(p) {
       return p.images.length > 0
+          && (!state.newDropOnly || p.newDrop)
           && (state.cat === 'all' || p.cat === state.cat)
           && (state.colors.size === 0 || state.colors.has(p.color) || state.colors.has(legacyColors[p.color]))
           && p.price >= state.priceMin && p.price <= state.priceMax;
@@ -227,10 +231,18 @@
     function renderChips() {
       $chips.innerHTML = '';
 
+      if (state.newDropOnly) {
+        addChip('New Drop', () => {
+          state.newDropOnly = false;
+          document.getElementById('newDropPill').classList.remove('active');
+          renderAll();
+        });
+      }
+
       if (state.cat !== 'all') {
         addChip(catLabels[state.cat] || state.cat, () => {
           state.cat = 'all';
-          document.querySelectorAll('.fpill').forEach(b =>
+          document.querySelectorAll('.fpill[data-cat]').forEach(b =>
             b.classList.toggle('active', b.dataset.cat === 'all'));
           renderAll();
         });
@@ -260,6 +272,7 @@
 
       // badge
       let n = 0;
+      if (state.newDropOnly) n++;
       if (state.cat !== 'all') n++;
       n += state.colors.size;
       if (state.priceMin > MIN || state.priceMax < MAX) n++;
@@ -284,7 +297,15 @@
     document.getElementById('catOpts').addEventListener('click', e => {
       const btn = e.target.closest('.fpill');
       if (!btn) return;
-      document.querySelectorAll('.fpill').forEach(b => b.classList.remove('active'));
+
+      if (btn.dataset.newdrop) {
+        state.newDropOnly = !state.newDropOnly;
+        btn.classList.toggle('active', state.newDropOnly);
+        renderAll();
+        return;
+      }
+
+      document.querySelectorAll('.fpill[data-cat]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       state.cat = btn.dataset.cat;
       renderAll();
@@ -317,8 +338,10 @@
       state.colors   = new Set();
       state.priceMin = MIN;
       state.priceMax = MAX;
-      document.querySelectorAll('.fpill').forEach(b =>
+      state.newDropOnly = false;
+      document.querySelectorAll('.fpill[data-cat]').forEach(b =>
         b.classList.toggle('active', b.dataset.cat === 'all'));
+      document.getElementById('newDropPill').classList.remove('active');
       document.querySelectorAll('.fcolor').forEach(b => b.classList.remove('active'));
       updateFill();
       renderAll();

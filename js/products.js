@@ -1,4 +1,6 @@
 const PRODUCTS = [
+  // ── New Drop: "starfall 2026" ──────────────────────────────
+  // добавляй новые товары дропа сюда, поставь newDrop: true
   {
     id: 'shirt-way-out',
     name: 'way-out',
