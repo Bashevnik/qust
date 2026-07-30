@@ -3,8 +3,8 @@ import { sendMessage, downloadFile } from '../lib/telegram.js';
 import { parseProductCaption } from '../lib/parse.js';
 import { getFile, putFile, uploadImage } from '../lib/github.js';
 
-// Даём функции время докачать все фото альбома и закоммитить их в GitHub —
-// на Hobby-плане по умолчанию было бы 10 сек, этого не хватает.
+// Держим функцию активной в фоне, пока докачиваем фото альбома и коммитим
+// их в GitHub — Telegram уже получил "ok" сразу, ждать его не заставляем.
 export const maxDuration = 60;
 
 const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID;
@@ -20,15 +20,19 @@ export default async function handler(req, res) {
   const update = req.body;
   const msg = update && update.message;
 
+  // Отвечаем Telegram'у мгновенно — если тянуть с ответом, пока идёт вся
+  // обработка (закачка фото, коммит в GitHub), Telegram решает, что доставка
+  // не удалась, и присылает тот же альбом ЕЩЁ РАЗ. Именно это и ломало сборку
+  // альбома: повторная доставка гонялась с оригиналом за один и тот же товар.
+  res.status(200).send('ok');
+
   if (!msg || !msg.photo) {
     console.log('skip: no message/photo in update');
-    res.status(200).send('ok');
     return;
   }
 
   if (!ADMIN_CHAT_ID || String(msg.from.id) !== String(ADMIN_CHAT_ID)) {
     console.log(`skip: sender ${msg.from && msg.from.id} != ADMIN_CHAT_ID ${ADMIN_CHAT_ID}`);
-    res.status(200).send('ok');
     return;
   }
 
@@ -44,7 +48,6 @@ export default async function handler(req, res) {
     const isLeader = await tryAcquireLock(groupId);
     if (!isLeader) {
       console.log(`not leader for ${groupId}, exiting`);
-      res.status(200).send('ok');
       return;
     }
 
@@ -63,7 +66,6 @@ export default async function handler(req, res) {
       console.log('no caption found among album items');
       await clearAlbum(groupId);
       await sendMessage(msg.chat.id, '⚠️ Не нашёл описание товара в сообщении — нужна подпись с названием, ценой и цветом.');
-      res.status(200).send('ok');
       return;
     }
 
@@ -94,18 +96,15 @@ export default async function handler(req, res) {
       `id: <code>${id}</code>\nФото: ${images.length}\n` +
       `Появится на сайте через 1-2 минуты (деплой автоматический).`
     );
-
-    res.status(200).send('ok');
   } catch (err) {
     console.error(err);
     try {
       await sendMessage(msg.chat.id, `❌ Не получилось добавить товар: ${escapeHtml(err.message)}`);
     } catch (_) { /* best effort */ }
-    res.status(200).send('ok');
   }
 }
 
-async function waitForAlbumToSettle(groupId, { quietMs = 7000, maxTotalMs = 35000, pollMs = 700 } = {}) {
+async function waitForAlbumToSettle(groupId, { quietMs = 5000, maxTotalMs = 20000, pollMs = 700 } = {}) {
   const start = Date.now();
   let lastSize = (await readAlbum(groupId)).length;
   let lastChangeAt = Date.now();
