@@ -2401,15 +2401,12 @@ a.card {
   background: #ffffff;
   overflow: hidden;
   border-radius: 2px;
-  padding: 4rem;
-  /* Reduced photo size by adding padding */
 }
 
 .carousel__img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  /* Changed from cover to contain */
+  object-fit: cover;
   object-position: center;
   display: block;
   transition: transform 0.1s ease-out;
