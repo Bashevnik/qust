@@ -1995,10 +1995,11 @@ footer {
 
 .drop-hero__title {
   font-family: var(--font-brand), cursive;
-  font-size: clamp(5.5rem, 18vw, 18rem);
+  font-size: clamp(3.5rem, 12vw, 12rem);
   font-weight: 400;
-  line-height: .85;
-  letter-spacing: -.035em;
+  line-height: 1;
+  letter-spacing: -.01em;
+  white-space: nowrap;
   background: linear-gradient(135deg, #ffffff 0%, #f4bfb1 45%, #e87aa0 75%, #a42a81 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

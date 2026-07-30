@@ -142,6 +142,7 @@
 
       // ── CAROUSEL ──────────────────────────────────────────────
       const mainImg    = document.getElementById('carouselImg');
+      if (p.imageFit) mainImg.style.objectFit = p.imageFit;
       const placeholder= document.getElementById('carouselPlaceholder');
       const thumbsEl   = document.getElementById('carouselThumbs');
       const counter    = document.getElementById('carCounter');

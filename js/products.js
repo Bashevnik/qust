@@ -9,6 +9,7 @@ const PRODUCTS = [
     price: 4044,
     color: 'разноцветный',
     newDrop: true,
+    imageFit: 'cover',
     images: ['images/lightness.jpg', 'images/lightness2.jpg', 'images/lightness3.jpg', 'images/lightness4.jpg', 'images/lightness5.jpg', 'images/lightness6.jpg'],
     desc: [
       'Съёмный рукав на заклёпках',
