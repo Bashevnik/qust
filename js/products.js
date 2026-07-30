@@ -10,7 +10,7 @@ const PRODUCTS = [
     color: 'разноцветный',
     newDrop: true,
     imageFit: 'cover',
-    images: ['images/lightness.jpg', 'images/lightness2.jpg', 'images/lightness3.jpg', 'images/lightness4.jpg', 'images/lightness5.jpg', 'images/lightness6.jpg'],
+    images: ['images/lightness-card.png', 'images/lightness.jpg', 'images/lightness2.jpg', 'images/lightness3.jpg', 'images/lightness4.jpg', 'images/lightness5.jpg', 'images/lightness6.jpg'],
     desc: [
       'Съёмный рукав на заклёпках',
       'Красивейшая розовая молния',
