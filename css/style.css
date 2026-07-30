@@ -1964,7 +1964,8 @@ footer {
    ═══════════════════════════════════════════════════════════ */
 .drop-hero {
   position: relative;
-  height: 100svh;
+  height: 100vh;
+  height: 100dvh;
   min-height: 640px;
   overflow: hidden;
   display: flex;
@@ -1985,6 +1986,17 @@ footer {
   object-fit: cover;
 }
 
+/* Center scrim so the title reads over the busy photo */
+.drop-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 52%, rgba(8, 3, 6, .62) 0%, rgba(8, 3, 6, .34) 40%, transparent 72%),
+    linear-gradient(to bottom, rgba(8, 3, 6, .28) 0%, transparent 22%, transparent 70%, rgba(8, 3, 6, .35) 100%);
+  pointer-events: none;
+}
+
 .drop-hero__content {
   position: relative;
   z-index: 2;
@@ -1999,7 +2011,8 @@ footer {
   font-weight: 200;
   letter-spacing: .32em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .38);
+  color: rgba(255, 255, 255, .72);
+  text-shadow: 0 1px 8px rgba(8, 3, 6, .6);
   margin-bottom: 16px;
 }
 
@@ -2010,11 +2023,13 @@ footer {
   line-height: 1;
   letter-spacing: -.01em;
   white-space: nowrap;
-  background: linear-gradient(135deg, #ffffff 0%, #f4bfb1 45%, #e87aa0 75%, #a42a81 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ffd9cf 42%, #ff8fb4 72%, #c23e97 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 6px 44px rgba(164, 42, 129, .55));
+  filter:
+    drop-shadow(0 2px 6px rgba(8, 3, 6, .55))
+    drop-shadow(0 8px 40px rgba(164, 42, 129, .6));
 }
 
 .drop-hero__date {
@@ -2181,7 +2196,7 @@ footer {
 
 @media (max-width: 768px) {
   .nav {
-    padding: 8px 20px;
+    padding: 10px 20px 18px;
   }
 
   .nav__logo {
