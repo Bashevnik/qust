@@ -493,13 +493,17 @@ img {
 .card__media {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 2 / 3;
   background: #ffffff;
 }
 
 .card__img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transform: scale(1);
   transition: transform .85s var(--ease-out);
 }
@@ -607,7 +611,6 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  align-items: start;
 }
 
 /* ── ARROW LINK ─────────────────────────────────────────────── */
@@ -1358,7 +1361,6 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  align-items: start;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2299,7 +2301,7 @@ a.card {
 /* Placeholder when no image */
 .card__placeholder {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  height: 100%;
   background: var(--grad-v);
   opacity: .55;
 }
