@@ -1,29 +1,42 @@
-import { kv } from '@vercel/kv';
+// Прямые вызовы Upstash REST API вместо @vercel/kv — чтобы исключить любые
+// сюрпризы конкретной версии клиентской библиотеки и видеть точно, что
+// реально уходит и приходит по сети.
 
-// Telegram delivers each photo of an album as a separate update. We buffer
-// them under the shared media_group_id and let the first arrival ("leader")
-// wait briefly, then read back whatever the whole album collected.
+const KV_URL = process.env.KV_REST_API_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+
+async function redis(...command) {
+  const res = await fetch(KV_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${KV_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(command),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(`Upstash error on ${command[0]}: ${data.error}`);
+  return data.result;
+}
 
 export async function appendToAlbum(groupId, item) {
-  await kv.rpush(`album:${groupId}`, JSON.stringify(item));
-  await kv.expire(`album:${groupId}`, 60);
+  await redis('RPUSH', `album:${groupId}`, JSON.stringify(item));
+  await redis('EXPIRE', `album:${groupId}`, 60);
 }
 
 export async function tryAcquireLock(groupId) {
-  // INCR is atomic regardless of whether the key already existed — whoever
-  // gets back 1 is unambiguously the first (and only) leader for this group.
-  const key = `lock:${groupId}`;
-  const n = await kv.incr(key);
-  console.log(`lock incr for ${groupId} -> ${n}`);
-  if (n === 1) await kv.expire(key, 55);
+  // INCR всегда атомарен на стороне Redis: кто первым увидел 1 — тот и лидер.
+  const n = await redis('INCR', `lock:${groupId}`);
+  console.log(`lock incr for ${groupId} -> ${n} (type ${typeof n})`);
+  if (n === 1) await redis('EXPIRE', `lock:${groupId}`, 55);
   return n === 1;
 }
 
 export async function readAlbum(groupId) {
-  const items = await kv.lrange(`album:${groupId}`, 0, -1);
-  return items.map(i => (typeof i === 'string' ? JSON.parse(i) : i));
+  const items = await redis('LRANGE', `album:${groupId}`, 0, -1);
+  return (items || []).map(i => (typeof i === 'string' ? JSON.parse(i) : i));
 }
 
 export async function clearAlbum(groupId) {
-  await kv.del(`album:${groupId}`, `lock:${groupId}`);
+  await redis('DEL', `album:${groupId}`, `lock:${groupId}`);
 }

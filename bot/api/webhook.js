@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     // на этот случай общий ключ на чат, чтобы всё равно собрать все фото вместе.
     const groupId = msg.media_group_id || `chat-${msg.chat.id}`;
     const photo = msg.photo[msg.photo.length - 1]; // highest resolution
-    console.log(`photo received, groupId=${groupId}, hasCaption=${!!msg.caption}`);
+    console.log(`photo received update=${update.update_id} msg=${msg.message_id} at ${Date.now()}, groupId=${groupId}, hasCaption=${!!msg.caption}`);
     await appendToAlbum(groupId, { file_id: photo.file_id, caption: msg.caption || '' });
 
     // Только один апдейт на альбом должен всё обработать — остальные просто добавляют своё фото выше.
