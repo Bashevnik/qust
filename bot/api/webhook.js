@@ -3,6 +3,10 @@ import { sendMessage, downloadFile } from '../lib/telegram.js';
 import { parseProductCaption } from '../lib/parse.js';
 import { getFile, putFile, uploadImage } from '../lib/github.js';
 
+// Даём функции время докачать все фото альбома и закоммитить их в GitHub —
+// на Hobby-плане по умолчанию было бы 10 сек, этого не хватает.
+export const maxDuration = 60;
+
 const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID;
 const PRODUCTS_PATH = 'js/products.js';
 const NEW_DROP_ANCHOR = '// добавляй новые товары дропа сюда, поставь newDrop: true';
@@ -16,36 +20,50 @@ export default async function handler(req, res) {
   const update = req.body;
   const msg = update && update.message;
 
-  // Ack Telegram immediately — it retries aggressively if we're slow/silent.
-  res.status(200).send('ok');
+  if (!msg || !msg.photo) {
+    console.log('skip: no message/photo in update');
+    res.status(200).send('ok');
+    return;
+  }
 
-  if (!msg || !msg.photo) return;
-  if (!ADMIN_CHAT_ID || String(msg.from.id) !== String(ADMIN_CHAT_ID)) return;
+  if (!ADMIN_CHAT_ID || String(msg.from.id) !== String(ADMIN_CHAT_ID)) {
+    console.log(`skip: sender ${msg.from && msg.from.id} != ADMIN_CHAT_ID ${ADMIN_CHAT_ID}`);
+    res.status(200).send('ok');
+    return;
+  }
 
   try {
     const groupId = msg.media_group_id || `single-${msg.message_id}`;
     const photo = msg.photo[msg.photo.length - 1]; // highest resolution
+    console.log(`photo received, groupId=${groupId}, hasCaption=${!!msg.caption}`);
     await appendToAlbum(groupId, { file_id: photo.file_id, caption: msg.caption || '' });
 
-    // Only one update per album should do the work — the rest just contribute their photo above.
+    // Только один апдейт на альбом должен всё обработать — остальные просто добавляют своё фото выше.
     const isLeader = msg.media_group_id ? await tryAcquireLock(groupId) : true;
-    if (!isLeader) return;
+    if (!isLeader) {
+      console.log(`not leader for ${groupId}, exiting`);
+      res.status(200).send('ok');
+      return;
+    }
 
     if (msg.media_group_id) {
-      // give the rest of the album a moment to land in the buffer
       await new Promise(r => setTimeout(r, 1500));
     }
 
     const items = await readAlbum(groupId);
     await clearAlbum(groupId);
+    console.log(`leader for ${groupId}, collected ${items.length} photo(s)`);
 
     const caption = items.map(i => i.caption).find(c => c && c.trim());
     if (!caption) {
+      console.log('no caption found among album items');
       await sendMessage(msg.chat.id, '⚠️ Не нашёл описание товара в сообщении — нужна подпись с названием, ценой и цветом.');
+      res.status(200).send('ok');
       return;
     }
 
-    const parsed = await parseProductCaption(caption);
+    const parsed = parseProductCaption(caption);
+    console.log('parsed:', JSON.stringify(parsed));
 
     const images = [];
     for (let i = 0; i < items.length; i++) {
@@ -55,11 +73,13 @@ export default async function handler(req, res) {
       const imgPath = `images/${fileName}`;
       await uploadImage(imgPath, buf, `new drop: add image ${fileName}`);
       images.push(imgPath);
+      console.log(`uploaded ${imgPath}`);
     }
 
     const { content, sha } = await getFile(PRODUCTS_PATH);
     const { newContent, id } = insertProduct(content, parsed, images);
     await putFile(PRODUCTS_PATH, newContent, `new drop: add product ${parsed.name}`, sha);
+    console.log(`product committed: ${id}`);
 
     await sendMessage(
       msg.chat.id,
@@ -67,11 +87,14 @@ export default async function handler(req, res) {
       `id: <code>${id}</code>\nФото: ${images.length}\n` +
       `Появится на сайте через 1-2 минуты (деплой автоматический).`
     );
+
+    res.status(200).send('ok');
   } catch (err) {
     console.error(err);
     try {
       await sendMessage(msg.chat.id, `❌ Не получилось добавить товар: ${escapeHtml(err.message)}`);
     } catch (_) { /* best effort */ }
+    res.status(200).send('ok');
   }
 }
 
