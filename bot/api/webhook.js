@@ -54,12 +54,14 @@ export default async function handler(req, res) {
     await waitForAlbumToSettle(groupId);
 
     const items = await readAlbum(groupId);
-    await clearAlbum(groupId);
     console.log(`leader for ${groupId}, collected ${items.length} photo(s)`);
+    // Блокировку и буфер держим до самого конца — иначе опоздавшее фото той
+    // же пересылки увидит пустое место и создаст себе отдельный "альбом".
 
     const caption = items.map(i => i.caption).find(c => c && c.trim());
     if (!caption) {
       console.log('no caption found among album items');
+      await clearAlbum(groupId);
       await sendMessage(msg.chat.id, '⚠️ Не нашёл описание товара в сообщении — нужна подпись с названием, ценой и цветом.');
       res.status(200).send('ok');
       return;
@@ -84,6 +86,8 @@ export default async function handler(req, res) {
     await putFile(PRODUCTS_PATH, newContent, `new drop: add product ${parsed.name}`, sha);
     console.log(`product committed: ${id}`);
 
+    await clearAlbum(groupId);
+
     await sendMessage(
       msg.chat.id,
       `✅ Добавил: <b>${escapeHtml(parsed.name)}</b> (${escapeHtml(parsed.type)}, ${parsed.price} ₽, ${escapeHtml(parsed.color)})\n` +
@@ -101,7 +105,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function waitForAlbumToSettle(groupId, { quietMs = 3500, maxTotalMs = 25000, pollMs = 700 } = {}) {
+async function waitForAlbumToSettle(groupId, { quietMs = 7000, maxTotalMs = 35000, pollMs = 700 } = {}) {
   const start = Date.now();
   let lastSize = (await readAlbum(groupId)).length;
   let lastChangeAt = Date.now();
