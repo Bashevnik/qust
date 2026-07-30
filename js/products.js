@@ -18,40 +18,6 @@ const PRODUCTS = [
     ]
   },
   {
-    id: 'tops-lightness-v3',
-    name: 'lightness',
-    type: 'Футболка',
-    cat: 'tops',
-    price: 4044,
-    color: 'разноцветный',
-    newDrop: true,
-    images: ['images/lightness.jpg'],
-    desc: [
-      'Съёмный рукав на заклёпках',
-      'Красивейшая розовая молния',
-      'Серебристый, металлический бегунок в форме 2-ух звёзд',
-      'Кроп фит',
-      '95% хлопок, 5% эластан'
-    ]
-  },
-  {
-    id: 'tops-lightness-v2',
-    name: 'lightness',
-    type: 'Футболка',
-    cat: 'tops',
-    price: 4044,
-    color: 'разноцветный',
-    newDrop: true,
-    images: ['images/lightness.jpg'],
-    desc: [
-      'Съёмный рукав на заклёпках',
-      'Красивейшая розовая молния',
-      'Серебристый, металлический бегунок в форме 2-ух звёзд',
-      'Кроп фит',
-      '95% хлопок, 5% эластан'
-    ]
-  },
-  {
     id: 'tops-lightness',
     name: 'lightness',
     type: 'Футболка',
