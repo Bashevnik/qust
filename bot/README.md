@@ -1,7 +1,8 @@
 # qust drop bot
 
 Пересылаешь боту сообщение менеджера (фото + описание товара) — бот сам
-разбирает текст через Claude, заливает фото и добавляет товар в
+разбирает текст по шаблону (без ИИ, обычным парсингом — формат у
+менеджера всегда одинаковый), заливает фото и добавляет товар в
 `js/products.js` (с флагом `newDrop: true`), коммитит в репозиторий на
 GitHub. Push в `main` уже настроен на автодеплой через существующий
 GitHub Action (`.github/workflows/deploy.yml`), так что товар появляется
@@ -12,8 +13,12 @@ GitHub Action (`.github/workflows/deploy.yml`), так что товар поя�
 1. Telegram шлёт вебхук на `/api/webhook` при каждом фото.
 2. Если фото — часть альбома (`media_group_id`), бот буферизует все фото
    альбома в Vercel KV ~1.5 сек, пока не соберёт их все.
-3. Подпись (caption) из любого фото альбома отправляется в Claude —
-   получаем название, тип, категорию, цену, цвет и пункты описания.
+3. Подпись (caption) из любого фото альбома разбирается по правилам
+   (`lib/parse.js`): первая строка — название (текст в кавычках), строки
+   через «–» — пункты описания, `Цена: N₽`, `Цвет: X`. Категория
+   (худи/свитшот/футболка/...) определяется по ключевым словам в
+   названии. Если цвет не входит в чёрный/серый/белый/разноцветный —
+   ставится «разноцветный».
 4. Фото заливаются в `images/` через GitHub Contents API, товар
    дописывается в `js/products.js`.
 5. Тебе приходит подтверждение в чат: что добавили и под каким `id`.
@@ -31,8 +36,7 @@ GitHub Action (`.github/workflows/deploy.yml`), так что товар поя�
 3. **GitHub Personal Access Token** — Settings → Developer settings →
    Fine-grained tokens → создать токен только для репозитория `qust` с
    правом `Contents: Read and write` → `GITHUB_TOKEN`.
-4. **Anthropic API key** — с console.anthropic.com → `ANTHROPIC_API_KEY`.
-5. **Vercel KV (Upstash)** — в проекте на Vercel: Storage → Create
+4. **Vercel KV (Upstash)** — в проекте на Vercel: Storage → Create
    Database → Upstash Redis → Connect to Project. Он сам добавит нужные
    `KV_*` переменные окружения, руками вводить не надо.
 
@@ -42,7 +46,6 @@ GitHub Action (`.github/workflows/deploy.yml`), так что товар поя�
 |------------------------|---------------------------------------------|
 | `TELEGRAM_BOT_TOKEN`   | токен от BotFather                          |
 | `ADMIN_CHAT_ID`        | твой Telegram id                            |
-| `ANTHROPIC_API_KEY`    | ключ Anthropic                              |
 | `GITHUB_TOKEN`         | fine-grained PAT с доступом к репозиторию   |
 | `GITHUB_OWNER`         | `Bashevnik`                                 |
 | `GITHUB_REPO`          | `qust`                                      |

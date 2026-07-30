@@ -1,6 +1,6 @@
 import { appendToAlbum, tryAcquireLock, readAlbum, clearAlbum } from '../lib/store.js';
 import { sendMessage, downloadFile } from '../lib/telegram.js';
-import { parseProductCaption } from '../lib/claude.js';
+import { parseProductCaption } from '../lib/parse.js';
 import { getFile, putFile, uploadImage } from '../lib/github.js';
 
 const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID;
