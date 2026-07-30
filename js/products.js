@@ -2,6 +2,23 @@ const PRODUCTS = [
   // ── New Drop: "starfall 2026" ──────────────────────────────
   // добавляй новые товары дропа сюда, поставь newDrop: true
   {
+    id: 'tops-variegated-v2',
+    name: 'variegated',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 4044,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/variegated.jpg', 'images/variegated2.jpg', 'images/variegated3.jpg', 'images/variegated4.jpg', 'images/variegated5.jpg', 'images/variegated6.jpg'],
+    desc: [
+      'Съёмный рукав на заклёпках',
+      'Красивейшая розовая молния',
+      'Серебристый, металлический бегунок в форме 2-ух звёзд',
+      'Кроп фит',
+      '95% хлопок, 5% эластан'
+    ]
+  },
+  {
     id: 'tops-variegated',
     name: 'variegated',
     type: 'Футболка',
