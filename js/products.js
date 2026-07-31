@@ -2,6 +2,23 @@ const PRODUCTS = [
   // ── New Drop: "starfall 2026" ──────────────────────────────
   // добавляй новые товары дропа сюда, поставь newDrop: true
   {
+    id: 'tops-variegated',
+    name: 'variegated',
+    type: 'Футболка',
+    cat: 'tops',
+    price: 4044,
+    color: 'разноцветный',
+    newDrop: true,
+    images: ['images/variegated.jpg', 'images/variegated2.jpg', 'images/variegated3.jpg', 'images/variegated4.jpg', 'images/variegated5.jpg', 'images/variegated6.jpg'],
+    desc: [
+      'Съёмный рукав на заклёпках',
+      'Красивейшая розовая молния',
+      'Серебристый, металлический бегунок в форме 2-ух звёзд',
+      'Кроп фит',
+      '95% хлопок, 5% эластан'
+    ]
+  },
+  {
     id: 'tops-lightness',
     name: 'lightness',
     type: 'Футболка',
@@ -9,8 +26,7 @@ const PRODUCTS = [
     price: 4044,
     color: 'разноцветный',
     newDrop: true,
-    imageFit: 'cover',
-    images: ['images/lightness-card.png', 'images/lightness.jpg', 'images/lightness2.jpg', 'images/lightness3.jpg', 'images/lightness4.jpg', 'images/lightness5.jpg', 'images/lightness6.jpg'],
+    images: ['images/lightness3.jpg', 'images/lightness4.jpg', 'images/lightness5.jpg', 'images/lightness6.jpg', 'images/lightness-card.png', 'images/lightness.jpg', 'images/lightness2.jpg'],
     desc: [
       'Съёмный рукав на заклёпках',
       'Красивейшая розовая молния',
@@ -107,7 +123,7 @@ const PRODUCTS = [
     name: 'way-out',
     type: 'Зип-рубашка',
     cat: 'shirts',
-    price: 4333,
+    price: 4555,
     color: 'белый',
     images: ['images/way-out.jpg', 'images/way-out2.jpg'],
     desc: [
@@ -121,7 +137,7 @@ const PRODUCTS = [
     name: 'way-outV2',
     type: 'Зип-рубашка',
     cat: 'shirts',
-    price: 4333,
+    price: 4555,
     color: 'черный',
     images: ['images/way-outV2.jpg', 'images/way-outV22.jpg'],
     desc: [
@@ -135,7 +151,7 @@ const PRODUCTS = [
     name: 'sleeping beauty',
     type: 'Рубашка',
     cat: 'shirts',
-    price: 5555,
+    price: 5777,
     color: 'белый',
     images: ['images/sleeping beauty.jpg', 'images/sleeping beauty2.jpg'],
     desc: [
@@ -177,7 +193,7 @@ const PRODUCTS = [
     name: 'Улыбнись!',
     type: 'Зип-худи',
     cat: 'zip-hoodies',
-    price: 3444,
+    price: 3999,
     color: 'серый',
     images: ['images/Улыбнись!.jpg', 'images/Улыбнись!2.jpg'],
     desc: [
@@ -191,7 +207,7 @@ const PRODUCTS = [
     name: 'Улыбнись!V2',
     type: 'Зип-худи',
     cat: 'zip-hoodies',
-    price: 3444,
+    price: 3999,
     color: 'черный',
     images: ['images/Улыбнись!V2.jpg', 'images/Улыбнись!V22.jpg'],
     desc: [
@@ -205,7 +221,7 @@ const PRODUCTS = [
     name: 'smiles',
     type: 'Зип-худи',
     cat: 'zip-hoodies',
-    price: 3444,
+    price: 3999,
     color: 'серый',
     images: ['images/smiles.jpg', 'images/smiles2.jpg'],
     desc: [
@@ -219,7 +235,7 @@ const PRODUCTS = [
     name: 'Alaska',
     type: 'Зип-худи',
     cat: 'zip-hoodies',
-    price: 3444,
+    price: 3999,
     color: 'серый',
     images: ['images/Alaska.jpg', 'images/Alaska2.jpg'],
     desc: [
@@ -233,7 +249,7 @@ const PRODUCTS = [
     name: 'Hofmannita',
     type: 'Зип-худи',
     cat: 'zip-hoodies',
-    price: 3444,
+    price: 3999,
     color: 'серый',
     images: ['images/Hofmannita.jpg', 'images/Hofmannita2.jpg'],
     desc: [
