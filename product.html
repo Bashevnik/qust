@@ -152,10 +152,11 @@
       // Фильтруем массив, чтобы убрать пустые строки или undefined (из-за лишних запятых в products.js)
       const imgs = [...p.images].filter(src => src && src.trim() !== '');
       
-      // Добавляем общее фото в галерею товара.
+      // Добавляем общее фото с размерной таблицей в галерею товара.
+      // Аксессуары (браслеты) и перчатки — без таблицы, у них нет размеров одежды.
       if (p.cat === 'shirts') {
         imgs.push('images/kovsemrubashkam.jpg');
-      } else if (p.cat !== 'gloves') {
+      } else if (p.cat !== 'gloves' && p.cat !== 'accessories') {
         imgs.push('images/kromerubashek.jpg');
       }
 
