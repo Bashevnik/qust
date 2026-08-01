@@ -83,10 +83,10 @@
           <div class="fprice-track">
             <div class="fprice-fill" id="priceFill"></div>
           </div>
-          <input type="range" id="rangeMin" min="676" max="5555" value="676"  step="1">
-          <input type="range" id="rangeMax" min="676" max="5555" value="5555" step="1">
+          <input type="range" id="rangeMin" min="676" max="5777" value="676"  step="1">
+          <input type="range" id="rangeMax" min="676" max="5777" value="5777" step="1">
         </div>
-        <span class="fprice-val" id="labelMax">5 555 ₽</span>
+        <span class="fprice-val" id="labelMax">5 777 ₽</span>
       </div>
     </div>
 
@@ -130,7 +130,13 @@
   <script src="js/main.js"></script>
   <script>
   (function () {
-    const MIN = 676, MAX = 5555;
+    // Границы фильтра берём из самих товаров, чтобы новый товар с любой ценой
+    // никогда не выпадал из диапазона (раньше пришлось бы править вручную).
+    const _prices = PRODUCTS.filter(p => p.images.length > 0)
+                            .map(p => p.price)
+                            .filter(n => Number.isFinite(n) && n > 0);
+    const MIN = _prices.length ? Math.min(..._prices) : 0;
+    const MAX = _prices.length ? Math.max(..._prices) : 0;
 
     const state = {
       cat:      'all',
@@ -161,6 +167,12 @@
     const $popover  = document.getElementById('filterPopover');
     const $backdrop = document.getElementById('filterBackdrop');
     const $badge    = document.getElementById('filterBadge');
+
+    // Подгоняем сами ползунки под реальный диапазон цен товаров.
+    $rMin.min = $rMax.min = MIN;
+    $rMin.max = $rMax.max = MAX;
+    $rMin.value = MIN;
+    $rMax.value = MAX;
 
     function fmt(n) { return n.toLocaleString('ru') + ' ₽'; }
     function plural(n) {
